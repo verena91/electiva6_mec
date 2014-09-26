@@ -44,11 +44,12 @@ public class Persona implements Serializable{
 	@Column
 	private String rubro;
 	@Column
-	private String montoRubro;
+	private Long montoRubro;
 	@Column
-	private String cantidad;
+	private Long cantidad;
+	
 	@Column
-	private String salario;
+	private Long salario;
 	
 	public String getObjetoPago() {
 		return objetoPago;
@@ -87,18 +88,20 @@ public class Persona implements Serializable{
 	public void setRubro(String rubro) {
 		this.rubro = rubro;
 	}
-	public String getMontoRubro() {
+	
+	public Long getMontoRubro() {
 		return montoRubro;
 	}
-	public void setMontoRubro(String montoRubro) {
+	public void setMontoRubro(Long montoRubro) {
 		this.montoRubro = montoRubro;
 	}
-	public String getCantidad() {
+	public Long getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(String cantidad) {
+	public void setCantidad(Long cantidad) {
 		this.cantidad = cantidad;
 	}
+
 	public String getMes() {
 		return mes;
 	}
@@ -135,10 +138,18 @@ public class Persona implements Serializable{
 	public void setAntiguedad(String antiguedad) {
 		this.antiguedad = antiguedad;
 	}
-	public String getSalario() {
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Long getSalario() {
 		return salario;
 	}
-	public void setSalario(String salario) {
+	public void setSalario(Long salario) {
 		this.salario = salario;
 	}
+
+	
 }

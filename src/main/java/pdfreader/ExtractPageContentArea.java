@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import prueba.prueba.domain.Persona;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -164,9 +165,9 @@ public class ExtractPageContentArea {
 				aux.setDependencia(valores[8]);
 				aux.setCargo(valores[9]);
 				aux.setRubro(valores[10]);
-				aux.setMontoRubro(valores[11].replaceAll("\\.",""));
-				aux.setCantidad(valores[12]);
-				aux.setSalario(valores[13].replaceAll("\\.",""));
+				aux.setMontoRubro(new Long(valores[11].replaceAll("\\.","")));
+				aux.setCantidad(new Long(valores[12]));
+				aux.setSalario(new Long(valores[13].replaceAll("\\.","")));
 				funcionarios.add(aux);
 			}
 			entrada2.close();
