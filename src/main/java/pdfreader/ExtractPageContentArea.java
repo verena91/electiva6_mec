@@ -26,9 +26,9 @@ import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 public class ExtractPageContentArea {
 
 	/** The original PDF that will be parsed. */
-	public static final String PREFACE = "agosto.pdf";
+	public static final String PREFACE = "junio.pdf";
 	/** The resulting text file. */
-	public static final String RESULT = "agosto.txt";
+	public static final String RESULT = "junio.txt";
 	//public static final Rectangle LEGAL_LANDSCAPE;
 	public static final String PATH = "/home/natalia/Documentos/opendata/electiva6_mec/doc/";
     /**
