@@ -30,7 +30,7 @@ public class ExtractPageContentArea {
 	/** The resulting text file. */
 	public static final String RESULT = "agosto.txt";
 	//public static final Rectangle LEGAL_LANDSCAPE;
-	public static final String PATH = "/home/verena/workspace2/prueba/doc/";
+	public static final String PATH = "/home/natalia/Documentos/opendata/electiva6_mec/doc/";
     /**
      * Parses a specific area of a PDF to a plain text file.
      * @param pdf the original PDF
@@ -164,9 +164,9 @@ public class ExtractPageContentArea {
 				aux.setDependencia(valores[8]);
 				aux.setCargo(valores[9]);
 				aux.setRubro(valores[10]);
-				aux.setMontoRubro(valores[11]);
+				aux.setMontoRubro(valores[11].replaceAll("\\.",""));
 				aux.setCantidad(valores[12]);
-				aux.setSalario(valores[13]);
+				aux.setSalario(valores[13].replaceAll("\\.",""));
 				funcionarios.add(aux);
 			}
 			entrada2.close();

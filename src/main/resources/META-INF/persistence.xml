@@ -8,9 +8,7 @@
 	<persistence-unit name="electiva6-ds" transaction-type="RESOURCE_LOCAL">
 		<non-jta-data-source>java:/electiva6</non-jta-data-source>
 
-		<class>prueba.prueba.domain.Bookmark</class>
-		<class>prueba.prueba.domain.Usuario</class>
-		<class>prueba.prueba.domain.Rol</class>
+		<class>prueba.prueba.domain.Persona</class>
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />

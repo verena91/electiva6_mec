@@ -3,9 +3,28 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:panel>
-			#{messages['main.app.welcome']}
-		</p:panel>
+	<table width="100%">
+			<tr>
+				<td>
+					<h:graphicImage id="image" alt="VUE" url="/images/vue.jpg"></h:graphicImage>
+				</td>
+				<td align="right">	
+					<h:graphicImage id="image2" alt="MIC" url="/images/mic.jpg"></h:graphicImage>
+				</td>
+			</tr>
+		</table>
+		<h:form enctype="multipart/form-data">  
+		   <p:messages showDetail="true"/>  
+		  <table width="100%">
+			<tr>
+				<td align="center">
+		    		<p:fileUpload value="#{azucarMB.file}" mode="simple" sizeLimit="100000" allowTypes="/(\.|\/)(xls)$/"/>  
+					<p:commandButton value="Subir Archivo" ajax="false"  
+		                actionListener="#{azucarMB.upload}"/>  
+				</td>
+			</tr>
+		</table>
+        </h:form>
 	</ui:define>
 
 </ui:composition>

@@ -53,7 +53,7 @@ public class MyStrategy implements TextExtractionStrategy {
     	}
     	else{
     		if(text.equals(" ")){
-    			result.append("vacio;");
+    			result.append(";");
     		}
     		else{
     			result.append(text);
