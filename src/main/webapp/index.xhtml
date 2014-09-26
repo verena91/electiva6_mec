@@ -5,12 +5,7 @@
 	<ui:define name="body">
 	<table width="100%">
 			<tr>
-				<td>
-					<h:graphicImage id="image" alt="VUE" url="/images/vue.jpg"></h:graphicImage>
-				</td>
-				<td align="right">	
-					<h:graphicImage id="image2" alt="MIC" url="/images/mic.jpg"></h:graphicImage>
-				</td>
+				
 			</tr>
 		</table>
 		<h:form enctype="multipart/form-data">  
@@ -18,9 +13,9 @@
 		  <table width="100%">
 			<tr>
 				<td align="center">
-		    		<p:fileUpload value="#{azucarMB.file}" mode="simple" sizeLimit="100000" allowTypes="/(\.|\/)(xls)$/"/>  
+		    		<p:fileUpload value="#{pdfMB.file}" mode="simple" sizeLimit="100000" allowTypes="/(\.|\/)(pdf)$/"/>  
 					<p:commandButton value="Subir Archivo" ajax="false"  
-		                actionListener="#{azucarMB.upload}"/>  
+		                actionListener="#{pdfMB.upload}"/>  
 				</td>
 			</tr>
 		</table>
