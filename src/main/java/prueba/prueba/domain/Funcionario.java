@@ -2,6 +2,7 @@ package prueba.prueba.domain;
 
 
 import java.io.Serializable;
+import java.io.StringWriter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -190,6 +191,31 @@ public class Funcionario implements Serializable{
 	public void setNombreObjetoGasto(String nombreObjetoGasto) {
 		this.nombreObjetoGasto = nombreObjetoGasto;
 	}
-	
+	/*public static Funcionario valueOf(String json) {
+		ObjectMapper mapper = new ObjectMapper();
+		Funcionario atributo = null;
+
+		try {
+			atributo = mapper.readValue(json, Funcionario.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return atributo;
+	}
+
+	public String toString() {
+		ObjectMapper mapper = new ObjectMapper();
+		StringWriter json = new StringWriter();
+
+		try {
+			mapper.writeValue(json, this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return json.toString();
+	}
+*/
 	
 }

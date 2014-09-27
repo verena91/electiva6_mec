@@ -55,7 +55,7 @@ import org.ticpy.tekoporu.template.JPACrud;
 
 import prueba.prueba.domain.Funcionario;
 
-public class PersonaDAO extends JPACrud<Funcionario, Long> {
+public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
@@ -90,4 +90,19 @@ public class PersonaDAO extends JPACrud<Funcionario, Long> {
 		
 	}
 	
+	public List<Funcionario> getResultByNombre(String nombre){
+		Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '%"+nombre+"%'");
+		return q.getResultList();
+	}
+	
+	public List<Funcionario> getResultByCI(String ci){
+		Query q = em.createQuery("select fun from Funcionario fun where fun.nroDocumento='"+ci+"'");
+		return q.getResultList();
+	}
+	
+	public List<Funcionario> getResultByDependencia(String dependencia){
+		//Query q = em.createQuery("select fun.nombreCompleto, fun.nroDocumento, fun.anho, fun.mes, fun.antiguedad, fun.cargo, fun.dependencia from Funcionario fun where fun.dependencia like '%"+dependencia+"%' order by fun.nombreCompleto");
+		Query q = em.createQuery("select fun from Funcionario fun where fun.dependencia like '%"+dependencia+"%' order by fun.nombreCompleto");
+		return q.getResultList();
+	}
 }
