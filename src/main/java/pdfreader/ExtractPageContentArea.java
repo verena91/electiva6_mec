@@ -13,7 +13,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
@@ -27,9 +26,9 @@ import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 public class ExtractPageContentArea {
 
 	/** The original PDF that will be parsed. */
-	public static final String PREFACE = "junio.pdf";
+	public static final String PREFACE = "agosto.pdf";
 	/** The resulting text file. */
-	public static final String RESULT = "junio.txt";
+	public static final String RESULT = "agosto.txt";
 	//public static final Rectangle LEGAL_LANDSCAPE;
 	public static final String PATH = "/home/natalia/Documentos/opendata/electiva6_mec/doc/";
     /**
@@ -134,9 +133,15 @@ public class ExtractPageContentArea {
 									.contains("Mes;Año;N° Documento;Nombre completo;Objeto de Gasto;Estado;Antiguedad;Concepto;Dependencia;Cargo;Rubro;Monto Rubro;Cantidad;Asignación;")) {
 								String cadenaFinal = (anterior.replaceAll(" ;",
 										" ")).replaceAll("\"", "'");
+								if(cadenaFinal.contains(";("))
+									cadenaFinal = cadenaFinal.replaceAll(";\\(","(");
+								if(cadenaFinal.contains("-;"))
+									cadenaFinal = cadenaFinal.replaceAll("-;","-");
+								if(cadenaFinal.contains("/;"))
+									cadenaFinal = cadenaFinal.replaceAll("/;","/");
 								out.println(cadenaFinal.substring(0,
 										cadenaFinal.length() - 1));
-								i++;
+								
 							}
 							anterior = strLinea;
 						}
@@ -145,12 +150,16 @@ public class ExtractPageContentArea {
 					}
 				}
 				
-				if(i==313 || i == 385){
-					System.out.println(" poronga ");
-				}
+				
 			}
 			String cadenaFinal = (anterior.replaceAll(" ;",
 					" ")).replaceAll("\"", "'");
+			if(cadenaFinal.contains(";("))
+				cadenaFinal = cadenaFinal.replaceAll(";\\(","(");
+			if(cadenaFinal.contains("-;"))
+				cadenaFinal = cadenaFinal.replaceAll("-;","-");
+			if(cadenaFinal.contains("/;"))
+				cadenaFinal = cadenaFinal.replaceAll("/;","/");
 			out.println(cadenaFinal.substring(0,
 					cadenaFinal.length() - 1));
 			out.flush();
