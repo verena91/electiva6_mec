@@ -114,8 +114,15 @@ private static final long serialVersionUID = 1L;
 									.contains("Mes;Año;N° Documento;Nombre completo;Objeto de Gasto;Estado;Antiguedad;Concepto;Dependencia;Cargo;Rubro;Monto Rubro;Cantidad;Asignación;")) {
 								String cadenaFinal = (anterior.replaceAll(" ;",
 										" ")).replaceAll("\"", "'");
+								if(cadenaFinal.contains(";("))
+									cadenaFinal = cadenaFinal.replaceAll(";\\(","(");
+								if(cadenaFinal.contains("-;"))
+									cadenaFinal = cadenaFinal.replaceAll("-;","-");
+								if(cadenaFinal.contains("/;"))
+									cadenaFinal = cadenaFinal.replaceAll("/;","/");
 								out.println(cadenaFinal.substring(0,
 										cadenaFinal.length() - 1));
+								
 							}
 							anterior = strLinea;
 						}
@@ -126,6 +133,12 @@ private static final long serialVersionUID = 1L;
 			}
 			String cadenaFinal = (anterior.replaceAll(" ;",
 					" ")).replaceAll("\"", "'");
+			if(cadenaFinal.contains(";("))
+				cadenaFinal = cadenaFinal.replaceAll(";\\(","(");
+			if(cadenaFinal.contains("-;"))
+				cadenaFinal = cadenaFinal.replaceAll("-;","-");
+			if(cadenaFinal.contains("/;"))
+				cadenaFinal = cadenaFinal.replaceAll("/;","/");
 			out.println(cadenaFinal.substring(0,
 					cadenaFinal.length() - 1));
 			out.flush();

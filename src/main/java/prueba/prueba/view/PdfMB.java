@@ -44,15 +44,20 @@
 package prueba.prueba.view;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.UploadedFile;
 import org.ticpy.tekoporu.stereotype.ViewController;
 
@@ -74,6 +79,34 @@ public class PdfMB {
 
 	public void setFile(UploadedFile file) {
 		this.file = file;
+	}
+
+	private DefaultStreamedContent downFile;
+
+	public void descargar() {
+		try {
+			InputStream stream = new FileInputStream(new File(
+					"/opt/pdf/funcionarios.csv"));
+			ExternalContext externalContext = FacesContext.getCurrentInstance()
+					.getExternalContext();
+			setDownFile(new DefaultStreamedContent(stream,
+					externalContext.getMimeType("funcionarios.csv"),
+					"funcionarios.csv"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setDownFile(DefaultStreamedContent downFile) {
+		this.downFile = downFile;
+	}
+
+	public DefaultStreamedContent getDownFile() {
+		return downFile;
+	}
+
+	public void handleFileUpload(FileUploadEvent event) {
+		this.setFile(event.getFile());
 	}
 
 	public void upload() throws FileNotFoundException, IOException {
