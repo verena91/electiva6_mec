@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import prueba.prueba.domain.Persona;
+
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -76,8 +76,16 @@ public class ExtractPageContentArea {
 	 */
 	public static void main(String[] args) throws IOException,
 			DocumentException {
+		System.out.println("INICIO.... ");
 		new ExtractPageContentArea().parsePdf(PATH + PREFACE, PATH + RESULT);
+		System.out.println("PARSEAR...");
 		parsear();
+		System.out.println("-FIN-");
+		//new ExtractPageContentArea().parsePdf(PATH + "julio.pdf", PATH + "julio.txt");
+		//parsear();
+		//new ExtractPageContentArea().parsePdf(PATH + "agosto.pdf", PATH + "agosto.txt");
+		//parsear();
+		
 	}
 
 	private static void parsear() {
@@ -113,7 +121,9 @@ public class ExtractPageContentArea {
 					anterior = anterior + strLinea.replaceAll(" ;", " ");
 				}
 			}
+			int i = 1;
 			while ((strLinea = buffer.readLine()) != null) {
+				
 				if (strLinea.length() != 0) {
 					if (strLinea.length() > 4) {
 						if (!(strLinea.substring(0, 5).equals(mes)) && !(strLinea.substring(0, 3).equals("Mes"))) {
@@ -126,12 +136,17 @@ public class ExtractPageContentArea {
 										" ")).replaceAll("\"", "'");
 								out.println(cadenaFinal.substring(0,
 										cadenaFinal.length() - 1));
+								i++;
 							}
 							anterior = strLinea;
 						}
 					} else {
 						anterior = anterior + strLinea.replaceAll(" ;", " ");
 					}
+				}
+				
+				if(i==313 || i == 385){
+					System.out.println(" poronga ");
 				}
 			}
 			String cadenaFinal = (anterior.replaceAll(" ;",
@@ -165,9 +180,9 @@ public class ExtractPageContentArea {
 				aux.setDependencia(valores[8]);
 				aux.setCargo(valores[9]);
 				aux.setRubro(valores[10]);
-				aux.setMontoRubro(new Long(valores[11].replaceAll("\\.","")));
-				aux.setCantidad(new Long(valores[12]));
-				aux.setSalario(new Long(valores[13].replaceAll("\\.","")));
+				aux.setMontoRubro(valores[11].replaceAll("\\.",""));
+				aux.setCantidad(valores[12]);
+				aux.setSalario(valores[13].replaceAll("\\.",""));
 				funcionarios.add(aux);
 			}
 			entrada2.close();

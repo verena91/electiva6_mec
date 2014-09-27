@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 import org.ticpy.tekoporu.stereotype.BusinessController;
 
 import pdfreader.MyStrategy;
-import prueba.prueba.domain.Persona;
+import pdfreader.Persona;
 
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;

@@ -53,9 +53,9 @@ import javax.persistence.Query;
 import org.slf4j.Logger;
 import org.ticpy.tekoporu.template.JPACrud;
 
-import prueba.prueba.domain.Persona;
+import prueba.prueba.domain.Funcionario;
 
-public class PersonaDAO extends JPACrud<Persona, Long> {
+public class PersonaDAO extends JPACrud<Funcionario, Long> {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
@@ -66,13 +66,13 @@ public class PersonaDAO extends JPACrud<Persona, Long> {
 	private Logger logger;
 	
 	@SuppressWarnings("unchecked")
-	public List<Persona> find() {
+	public List<Funcionario> find() {
 		Query q=  em.createQuery("select * from Persona p");
 		return q.getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Persona> findPage(int pageSize, int first, String sortField, boolean sortOrderAsc) {
+	public List<Funcionario> findPage(int pageSize, int first, String sortField, boolean sortOrderAsc) {
 		String order = "asc";
 		if (!sortOrderAsc) order="desc";
 		
@@ -80,7 +80,7 @@ public class PersonaDAO extends JPACrud<Persona, Long> {
 		q.setFirstResult(first);
 		q.setMaxResults(pageSize);
 		
-		return (List<Persona>) q.getResultList();
+		return (List<Funcionario>) q.getResultList();
 
 	}
 	
