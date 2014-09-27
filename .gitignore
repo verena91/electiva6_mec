@@ -7,24 +7,18 @@ target/
 *.class
 ######################
 # Windows
-######################
 # Windows image file caches
 Thumbs.db
 # Folder config file
 Desktop.ini
-######################
 # OSX
-######################
-.DS_Store
 .svn
 # Thumbnails
 ._*
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
-######################
 # Eclipse
-######################
 *.pydevproject
 .project
 .metadata
@@ -48,3 +42,6 @@ local.properties
 .cproject
 # PDT-specific
 .buildpath
+target
+.settings/*
+!.settings/.jsdtscope
