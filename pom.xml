@@ -88,7 +88,7 @@
 			<version>1.2.1</version>
 		</dependency>
 		
-	   <dependency>
+		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jackson2-provider</artifactId>
 		</dependency>
