@@ -26,9 +26,9 @@ import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 public class ExtractPageContentArea {
 
 	/** The original PDF that will be parsed. */
-	public static final String PREFACE = "junio.pdf";
+	public static final String PREFACE = "agosto.pdf";
 	/** The resulting text file. */
-	public static final String RESULT = "junio.txt";
+	public static final String RESULT = "agosto.txt";
 	//public static final Rectangle LEGAL_LANDSCAPE;
 	public static final String PATH = "/home/natalia/Documentos/opendata/electiva6_mec/doc/";
     /**
@@ -75,8 +75,16 @@ public class ExtractPageContentArea {
 	 */
 	public static void main(String[] args) throws IOException,
 			DocumentException {
+		System.out.println("INICIO.... ");
 		new ExtractPageContentArea().parsePdf(PATH + PREFACE, PATH + RESULT);
+		System.out.println("PARSEAR...");
 		parsear();
+		System.out.println("-FIN-");
+		//new ExtractPageContentArea().parsePdf(PATH + "julio.pdf", PATH + "julio.txt");
+		//parsear();
+		//new ExtractPageContentArea().parsePdf(PATH + "agosto.pdf", PATH + "agosto.txt");
+		//parsear();
+		
 	}
 
 	private static void parsear() {
@@ -112,7 +120,9 @@ public class ExtractPageContentArea {
 					anterior = anterior + strLinea.replaceAll(" ;", " ");
 				}
 			}
+			int i = 1;
 			while ((strLinea = buffer.readLine()) != null) {
+				
 				if (strLinea.length() != 0) {
 					if (strLinea.length() > 4) {
 						if (!(strLinea.substring(0, 5).equals(mes)) && !(strLinea.substring(0, 3).equals("Mes"))) {
@@ -123,8 +133,15 @@ public class ExtractPageContentArea {
 									.contains("Mes;Año;N° Documento;Nombre completo;Objeto de Gasto;Estado;Antiguedad;Concepto;Dependencia;Cargo;Rubro;Monto Rubro;Cantidad;Asignación;")) {
 								String cadenaFinal = (anterior.replaceAll(" ;",
 										" ")).replaceAll("\"", "'");
+								if(cadenaFinal.contains(";("))
+									cadenaFinal = cadenaFinal.replaceAll(";\\(","(");
+								if(cadenaFinal.contains("-;"))
+									cadenaFinal = cadenaFinal.replaceAll("-;","-");
+								if(cadenaFinal.contains("/;"))
+									cadenaFinal = cadenaFinal.replaceAll("/;","/");
 								out.println(cadenaFinal.substring(0,
 										cadenaFinal.length() - 1));
+								
 							}
 							anterior = strLinea;
 						}
@@ -132,9 +149,17 @@ public class ExtractPageContentArea {
 						anterior = anterior + strLinea.replaceAll(" ;", " ");
 					}
 				}
+				
+				
 			}
 			String cadenaFinal = (anterior.replaceAll(" ;",
 					" ")).replaceAll("\"", "'");
+			if(cadenaFinal.contains(";("))
+				cadenaFinal = cadenaFinal.replaceAll(";\\(","(");
+			if(cadenaFinal.contains("-;"))
+				cadenaFinal = cadenaFinal.replaceAll("-;","-");
+			if(cadenaFinal.contains("/;"))
+				cadenaFinal = cadenaFinal.replaceAll("/;","/");
 			out.println(cadenaFinal.substring(0,
 					cadenaFinal.length() - 1));
 			out.flush();
