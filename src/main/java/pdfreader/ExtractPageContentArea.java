@@ -26,9 +26,9 @@ import com.itextpdf.text.pdf.parser.TextExtractionStrategy;
 public class ExtractPageContentArea {
 
 	/** The original PDF that will be parsed. */
-	public static final String PREFACE = "agosto.pdf";
+	public static final String PREFACE = "julio.pdf";
 	/** The resulting text file. */
-	public static final String RESULT = "agosto.txt";
+	public static final String RESULT = "julio.txt";
 	//public static final Rectangle LEGAL_LANDSCAPE;
 	public static final String PATH = "/home/natalia/Documentos/opendata/electiva6_mec/doc/";
     /**
@@ -171,6 +171,8 @@ public class ExtractPageContentArea {
 			String[] valores = null;
 			strLinea = null;
 			String[] objPago = null;
+			String cargo="";
+			String dependencia = "";
 			while ((strLinea = buffer2.readLine()) != null) {
 				aux = new Persona();
 				valores = strLinea.split(";");
@@ -186,8 +188,16 @@ public class ExtractPageContentArea {
 				aux.setTipoFuncionario(valores[5]);
 				aux.setAntiguedad(valores[6]);
 				aux.setConcepto(valores[7]);
-				aux.setDependencia(valores[8]);
-				aux.setCargo(valores[9]);
+				
+				if(valores[8].compareTo("")!=0){
+					dependencia = valores[8];
+				}
+				aux.setDependencia(dependencia);
+				if(valores[9].compareTo("")!=0){
+					cargo = valores[9];
+				}
+				aux.setCargo(cargo);
+				
 				aux.setRubro(valores[10]);
 				aux.setMontoRubro(valores[11].replaceAll("\\.",""));
 				aux.setCantidad(valores[12]);
