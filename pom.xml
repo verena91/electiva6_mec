@@ -77,7 +77,11 @@
 			<artifactId>itextpdf</artifactId>
 			<version>5.5.2</version>
 		</dependency>
-
+		<dependency> 
+		    <groupId>org.tekoporu</groupId> 
+		    <artifactId>test</artifactId> 
+		    <version>1.0</version> 
+		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -92,31 +96,6 @@
 			<artifactId>jaxrs-api</artifactId>
 		</dependency>
 	</dependencies>
-
-	<repositories>
-		<repository>
-			<id>artifactory-snapshots</id>
-			<name>Tekoporu Maven Repository</name>
-			<url>http://www.datosparaguay.org/artifactory/libs-snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-		</repository>
-		<repository>
-			<id>artifactory-releases</id>
-			<name>Tekoporu Maven Repository</name>
-			<url>http://www.datosparaguay.org/artifactory/libs-release</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
 <profiles>
         <profile>
 <!-- When built in OpenShift the openshift profile will be used when invoking mvn. -->

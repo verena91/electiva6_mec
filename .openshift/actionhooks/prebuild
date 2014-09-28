@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=../../app-root/repo/tekoporu-1.0.jar -DgroupId=org.tekoporu -DartifactId=test -Dversion=1.0 -Dpackaging=jar
