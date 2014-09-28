@@ -51,6 +51,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -81,8 +82,23 @@ public class PdfMB {
 		this.file = file;
 	}
 
+	private boolean disable =true;
+	
+	public boolean isDisable() {
+		return disable;
+	}
+
+	public void setDisable(boolean disable) {
+		this.disable = disable;
+	}
+
 	private DefaultStreamedContent downFile;
 
+	@PostConstruct
+	public void post(){
+		System.out.println("PostConstruct");
+	}
+	
 	public void descargar() {
 		try {
 			InputStream stream = new FileInputStream(new File(
@@ -140,9 +156,10 @@ public class PdfMB {
 			try {
 				int resultado = this.pdfBC.consultarDatos(camino, archivoPdf);
 				if (resultado == 1) {
+					this.disable=false;
 					FacesMessage msg = new FacesMessage("Exito:",
 							" El archivo " + file.getFileName()
-									+ " ha sido procesado");
+									+ " ha sido procesado. Puede descargarlo haciendo click en Descargar CSV.");
 					FacesContext.getCurrentInstance().addMessage(null, msg);
 				}
 			} catch (Exception ex) {

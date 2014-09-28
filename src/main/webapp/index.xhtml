@@ -6,28 +6,35 @@
 	template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form enctype="multipart/form-data">
-			<p:messages showDetail="true" />
-			<table width="100%">
-				<tr>
-					<td align="center"><p:fileUpload value="#{pdfMB.file}"
-							mode="simple" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
-						<br />
-					<br /> <p:commandButton value="Subir Archivo" ajax="false"
-							actionListener="#{pdfMB.upload}" /></td>
-				</tr>
-			</table>
-		</h:form>
-		<h:form prependId="aa">
-			<table width="100%">
-				<tr>
-					<td align="center"><p:commandButton value="Descargar Archivo"
-							ajax="false" actionListener="#{pdfMB.descargar}">
-							<p:fileDownload value="#{pdfMB.downFile}" />
-						</p:commandButton></td>
-				</tr>
-			</table>
-		</h:form>
+		<p:panel header="Transformar a CSV">
+		<h:outputText value="Puede transformar el pdf de la planilla de funcionarios administrativos del MEC seleccionando el archivo haciendo clic luego en Procesar Archivo. Al finalizar el procesamiento puede descargar el archivo haciendo clic en Descargar CSV." />
+		<br /><br />
+			<h:form enctype="multipart/form-data">
+				<p:messages showDetail="true" />
+				
+				<table width="100%">
+					<tr>
+						<td align="center">
+						<p:fileUpload value="#{pdfMB.file}"
+								mode="simple" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+						<p:commandButton value="Procesar Archivo"
+								ajax="false" actionListener="#{pdfMB.upload}" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+			<h:form prependId="aa">
+				<table width="100%">
+					<tr>
+						<td align="center"><p:commandButton value="Descargar CSV"
+								ajax="false" actionListener="#{pdfMB.descargar}" disabled="#{pdfMB.disable}">
+								<p:fileDownload value="#{pdfMB.downFile}" />
+							</p:commandButton></td>
+					</tr>
+				</table>
+			</h:form>
+		</p:panel>
+
 	</ui:define>
 
 </ui:composition>
