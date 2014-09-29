@@ -3,6 +3,7 @@ package prueba.prueba.business;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.Query;
 
 import prueba.prueba.domain.Funcionario;
 import prueba.prueba.persistence.FuncionarioDAO;
@@ -25,4 +26,11 @@ public class FuncionarioBC {
 		return this.funcionarioDAO.getResultByDependencia(dependencia);
 	}
 	
+	public List<Object> getGastosPorMes(){
+		return this.funcionarioDAO.getGastosPorMes();
+	}
+	
+	public List<Object> getGastosPorConcepto(){
+		return this.funcionarioDAO.getGastosPorConcepto();
+	}
 }
