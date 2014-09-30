@@ -25,4 +25,8 @@ public class FuncionarioBC {
 		return this.funcionarioDAO.getResultByDependencia(dependencia);
 	}
 	
+	public List<Object[]> getMaxConceptos(){
+		return this.funcionarioDAO.getMaxConceptos();
+	}
+	
 }

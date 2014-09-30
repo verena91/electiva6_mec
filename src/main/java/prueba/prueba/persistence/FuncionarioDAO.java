@@ -105,4 +105,11 @@ public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 		Query q = em.createQuery("select fun from Funcionario fun where fun.dependencia like '%"+dependencia+"%' order by fun.nombreCompleto");
 		return q.getResultList();
 	}
+	
+	public List<Object[]> getMaxConceptos(){
+		Query q = em.createNativeQuery("select max(f.salario) as salario, f.concepto from funcionario f group by f.concepto order by salario desc");
+		List<Object[]> obj =q.getResultList();
+		return obj;
+		
+	}
 }
