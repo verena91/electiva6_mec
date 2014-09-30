@@ -55,7 +55,7 @@ import org.ticpy.tekoporu.template.JPACrud;
 
 import prueba.prueba.domain.Funcionario;
 
-public class PersonaDAO extends JPACrud<Funcionario, Long> {
+public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
@@ -89,5 +89,51 @@ public class PersonaDAO extends JPACrud<Funcionario, Long> {
 		return ((Long) q.getSingleResult()).intValue();
 		
 	}
+	
+	public List<Funcionario> getResultByNombre(String nombre){
+		Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '%"+nombre+"%'");
+		return q.getResultList();
+	}
+	
+	public List<Funcionario> getResultByCI(String ci){
+		Query q = em.createQuery("select fun from Funcionario fun where fun.nroDocumento='"+ci+"'");
+		return q.getResultList();
+	}
+	
+	public List<Funcionario> getResultByDependencia(String dependencia){
+		//Query q = em.createQuery("select fun.nombreCompleto, fun.nroDocumento, fun.anho, fun.mes, fun.antiguedad, fun.cargo, fun.dependencia from Funcionario fun where fun.dependencia like '%"+dependencia+"%' order by fun.nombreCompleto");
+		Query q = em.createQuery("select fun from Funcionario fun where fun.dependencia like '%"+dependencia+"%' order by fun.nombreCompleto");
+		return q.getResultList();
+	}
+	
+	public List<Object[]> getMaxConceptos(){
+		Query q = em.createNativeQuery("select max(f.salario) as salario, f.concepto from funcionario f group by f.concepto order by salario desc");
+		List<Object[]> obj =q.getResultList();
+		return obj;
+		
+	}
+	public List<Object> getGastosPorMes(){
+		
+		Query q = em.createNativeQuery("select mes, anho, sum(salario) total from funcionario" 
+										+ " where concepto = 'Sueldos'" 
+										+ " and DATE_PART('year', now()) - cast(anho as double precision) < 2" 
+										+ " group by mes, anho " 
+										+ " order by mes, anho");
+		return q.getResultList();
+		
+		
+	}
+
+	public List<Object> getGastosPorConcepto(){
+		Query q = em.createNativeQuery("select anho, concepto,  sum(salario) total "
+				+ " from funcionario "
+				+ " where cast(anho as double precision) = DATE_PART('year', now()) "
+				+ " group by anho, concepto "
+				+ " order by anho, concepto");
+		return q.getResultList();
+		
+		
+	}
+	
 	
 }

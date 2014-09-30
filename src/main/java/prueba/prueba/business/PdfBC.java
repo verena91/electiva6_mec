@@ -150,6 +150,8 @@ private static final long serialVersionUID = 1L;
 			String[] valores = null;
 			strLinea = null;
 			String[] objPago = null;
+			String cargo = "";
+			String dependencia="";
 			while ((strLinea = buffer2.readLine()) != null) {
 				aux = new Persona();
 				valores = strLinea.split(";");
@@ -165,8 +167,14 @@ private static final long serialVersionUID = 1L;
 				aux.setTipoFuncionario(valores[5]);
 				aux.setAntiguedad(valores[6]);
 				aux.setConcepto(valores[7]);
-				aux.setDependencia(valores[8]);
-				aux.setCargo(valores[9]);
+				if(valores[8].compareTo("")!=0){
+					dependencia = valores[8];
+				}
+				aux.setDependencia(dependencia);
+				if(valores[9].compareTo("")!=0){
+					cargo = valores[9];
+				}
+				aux.setCargo(cargo);
 				aux.setRubro(valores[10]);
 				aux.setMontoRubro(valores[11].replaceAll("\\.",""));
 				aux.setCantidad(valores[12]);
