@@ -112,4 +112,28 @@ public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 		return obj;
 		
 	}
+	public List<Object> getGastosPorMes(){
+		
+		Query q = em.createNativeQuery("select mes, anho, sum(salario) total from funcionario" 
+										+ " where concepto = 'Sueldos'" 
+										+ " and DATE_PART('year', now()) - cast(anho as double precision) < 2" 
+										+ " group by mes, anho " 
+										+ " order by mes, anho");
+		return q.getResultList();
+		
+		
+	}
+
+	public List<Object> getGastosPorConcepto(){
+		Query q = em.createNativeQuery("select anho, concepto,  sum(salario) total "
+				+ " from funcionario "
+				+ " where cast(anho as double precision) = DATE_PART('year', now()) "
+				+ " group by anho, concepto "
+				+ " order by anho, concepto");
+		return q.getResultList();
+		
+		
+	}
+	
+	
 }
