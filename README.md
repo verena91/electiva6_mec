@@ -9,7 +9,7 @@ Instalación
     
 2. Crear la base de datos con el nombre **electiva**, propietario **postgres**.
 
-3. Agregar el datasource en el standalone.xml del servidor JBoss.
+3. Agregar el contenido del archivo datasource.txt en el standalone.xml del servidor JBoss.
     
 4. Clonar este repositorio:
 
