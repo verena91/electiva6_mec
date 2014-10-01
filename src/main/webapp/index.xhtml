@@ -6,97 +6,121 @@
 	template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:panel header="Transformar a CSV">
-			<h:outputText
-				value="Puede transformar el pdf de la planilla de funcionarios administrativos del MEC seleccionando el archivo haciendo clic luego en Procesar Archivo. Al finalizar el procesamiento puede descargar el archivo haciendo clic en Descargar CSV." />
-			<br />
-			<br />
-			<h:form enctype="multipart/form-data">
-				<p:messages showDetail="true" />
 
-				<table width="100%">
-					<tr>
-						<td align="center"><p:fileUpload value="#{pdfMB.file}"
-								mode="simple" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
-							<p:commandButton value="Procesar Archivo" ajax="false"
-								actionListener="#{pdfMB.upload}" /></td>
-					</tr>
-				</table>
-			</h:form>
-			<h:form prependId="aa">
-				<table width="100%">
-					<tr>
-						<td align="center"><p:commandButton value="Descargar CSV"
-								ajax="false" actionListener="#{pdfMB.descargar}"
-								disabled="#{pdfMB.disable}">
-								<p:fileDownload value="#{pdfMB.downFile}" />
-							</p:commandButton></td>
-					</tr>
-				</table>
-			</h:form>
-		</p:panel>
-		<p:panel header="Buscador">
-			<h:form>
-				<p:panelGrid columns="3">
-					<h:outputText value="Nombre:" />
-					<h:inputText value="#{funcionarioMB.nombre}"></h:inputText>
-					<p:commandButton value="Buscar por nombre"
-						actionListener="#{funcionarioMB.buscarPorNombre}" update="result"></p:commandButton>
-					<h:outputText value="CI:" />
-					<h:inputText value="#{funcionarioMB.ci}"></h:inputText>
-					<p:commandButton value="Buscar por CI"
-						actionListener="#{funcionarioMB.buscarPorCedula}" update="result"></p:commandButton>
-				</p:panelGrid>
-				<h:outputText value="Primeros 20 resultados." />
-				<p:dataTable value="#{funcionarioMB.resultados}" var="bean"
-					id="result" rows="20">
-					<p:column headerText="Nombre">
-						<h:outputText value="#{bean.nombreCompleto}" />
-					</p:column>
-					<p:column headerText="CI">
-						<h:outputText value="#{bean.nroDocumento}" />
-					</p:column>
-					<p:column headerText="Mes-Año">
-						<h:outputText value="#{bean.mes}-#{bean.anho}" />
-					</p:column>
-					<p:column headerText="Dependencia">
-						<h:outputText value="#{bean.dependencia}" />
-					</p:column>
-					<p:column headerText="Cargo">
-						<h:outputText value="#{bean.cargo}" />
-					</p:column>
-					<p:column headerText="Objeto de gasto">
-						<h:outputText value="#{bean.nombreObjetoGasto}" />
-					</p:column>
-					<p:column headerText="Salario" style="text-align:right">
-						<h:outputText value="#{bean.salario}">
-							<f:convertNumber maxFractionDigits="1" />
-						</h:outputText>
-					</p:column>
-					
-				</p:dataTable>
-			</h:form>
-		</p:panel>
+		<p:tabView>
+			<p:tab title="PDF a CSV">
 
+				<h3 style="text-align: center">Exportar datos de PDF a CSV</h3>
+				<p:panel>
+					<h:outputText
+						value="Puede transformar el pdf de la planilla de funcionarios administrativos del MEC seleccionando el archivo haciendo clic luego en Procesar Archivo. Al finalizar el procesamiento puede descargar el archivo haciendo clic en Descargar CSV." />
+					<br />
+					<br />
+					<h:form enctype="multipart/form-data">
+						<p:messages showDetail="true" />
 
-		<p:panel header="Resumen de datos">
-			<p:panelGrid columns="2">
-				<f:facet name="header">
-					<h:outputText value="Maximos pagos por conceptos" />
-				</f:facet>
+						<table width="100%">
+							<tr>
+								<td align="center"><p:fileUpload value="#{pdfMB.file}"
+										mode="simple" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+									<p:commandButton value="Procesar Archivo" ajax="false"
+										actionListener="#{pdfMB.upload}" /></td>
+							</tr>
+						</table>
+					</h:form>
+					<h:form prependId="aa">
+						<table width="100%">
+							<tr>
+								<td align="center"><p:commandButton value="Descargar CSV"
+										ajax="false" actionListener="#{pdfMB.descargar}"
+										disabled="#{pdfMB.disable}">
+										<p:fileDownload value="#{pdfMB.downFile}" />
+									</p:commandButton></td>
+							</tr>
+						</table>
+					</h:form>
+				</p:panel>
+			</p:tab>
+			<p:tab title="Buscador">
+				<h3 style="text-align: center">Buscador de funcionarios</h3>
+				<p:panel>
+					<h:form>
+						<table>
+							<tr>
+								<td><h:outputText
+										style="font-weight: bold;  color:#2E6E9E" value="Nombre:" /></td>
+								<td><p:inputText value="#{funcionarioMB.nombre}" /></td>
+								<td><p:commandButton value="Buscar"
+										actionListener="#{funcionarioMB.buscarPorNombre}"
+										update="result"></p:commandButton></td>
+							</tr>
+							<tr>
+								<td><h:outputText
+										style="font-weight: bold; color:#2E6E9E" value="CI:" /></td>
+								<td><p:inputText value="#{funcionarioMB.ci}" /></td>
+								<td><p:commandButton value="Buscar"
+										actionListener="#{funcionarioMB.buscarPorCedula}"
+										update="result"></p:commandButton></td>
+							</tr>
+						</table>
+						<br />
+						<h:outputText value="Se muestran los primeros 20 resultados." />
+						<br />
+						<br />
+						<p:dataTable value="#{funcionarioMB.resultados}" var="bean"
+							id="result" rows="20" emptyMessage="No se encuentran registros.">
+							<p:column headerText="Nombre">
+								<h:outputText value="#{bean.nombreCompleto}" />
+							</p:column>
+							<p:column headerText="CI">
+								<h:outputText value="#{bean.nroDocumento}" />
+							</p:column>
+							<p:column headerText="Mes-Año">
+								<h:outputText value="#{bean.mes}-#{bean.anho}" />
+							</p:column>
+							<p:column headerText="Dependencia">
+								<h:outputText value="#{bean.dependencia}" />
+							</p:column>
+							<p:column headerText="Cargo">
+								<h:outputText value="#{bean.cargo}" />
+							</p:column>
+							<p:column headerText="Objeto de gasto">
+								<h:outputText value="#{bean.nombreObjetoGasto}" />
+							</p:column>
+							<p:column headerText="Salario" style="text-align:right">
+								<h:outputText value="#{bean.salario}">
+									<f:convertNumber maxFractionDigits="1" />
+								</h:outputText>
+							</p:column>
 
-				<p:dataTable var="bean" value="#{datosMB.conceptos}">
-					<p:column>
-						<h:outputText value="#{bean.concepto}" />
-					</p:column>
-					<p:column style="text-align:right">
-						<h:outputText value="#{bean.monto}">
-							<f:convertNumber maxFractionDigits="1" />
-						</h:outputText>
-					</p:column>
-				</p:dataTable>
-			</p:panelGrid>
-		</p:panel>
+						</p:dataTable>
+					</h:form>
+				</p:panel>
+			</p:tab>
+			<p:tab title="Resumen de datos">
+
+				<h3 style="text-align: center">Máximos pagos por conceptos</h3>
+				<p:panel>
+					<p:dataTable var="bean" value="#{datosMB.conceptos}">
+						<p:column headerText="Concepto">
+							<h:outputText value="#{bean.concepto}" />
+						</p:column>
+						<p:column style="text-align:right" headerText="Monto">
+							<h:outputText value="#{bean.monto}">
+								<f:convertNumber maxFractionDigits="1" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</p:tab>
+			<p:tab title="Visualizaciones">
+
+				<h3 style="text-align: center">Visualizaciones</h3>
+				<p:panel>
+					Agregar los gráficos.
+				</p:panel>
+			</p:tab>
+		</p:tabView>
 
 	</ui:define>
 
