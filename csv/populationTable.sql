@@ -16,8 +16,8 @@ DELIMITER ',' CSV HEADER;
 
 create index mes on funcionario(mes);
 
-/*select junio.nombreCompleto, junio.salario, julio.salario from
-(select distinct f.nombreCompleto, sum(salario) as salario from funcionario f where mes='junio' 
-order by f.nombreCompleto group by f.nombreCompleto) junio,
-(select distinct f.nombreCompleto, sum(salario) as salario from funcionario f where mes='julio' 
-order by f.nombreCompleto group by f.nombreCompleto) julio;*/
+/**PARA EXTRAER TODOS LOS DATOS DE LA BASE DE DATOS EN UN CSV **/
+COPY funcionario (mes, anho, nroDocumento, nombreCompleto, objetoGasto, nombreObjetoGasto, estado, antiguedad, 
+concepto, dependencia, cargo, rubro, montorubro, cantidad, salario) 
+TO '/home/natalia/funcionarios.csv' WITH
+DELIMITER ',' CSV HEADER;
