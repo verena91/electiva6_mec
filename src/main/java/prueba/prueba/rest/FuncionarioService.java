@@ -20,7 +20,7 @@ public class FuncionarioService {
 	private FuncionarioDAO funcionarioDAO;
 	
 	@GET
-	@Path("/nombre/")
+	@Path("/nombre/mes")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Funcionario> getFuncionario(@QueryParam("nombre")String nombre, @QueryParam("mes")String mes){
 		List<Funcionario> lista = funcionarioDAO.getResultByNombre(nombre.toUpperCase(), mes.toLowerCase());
@@ -28,7 +28,7 @@ public class FuncionarioService {
 	}
 	
 	@GET
-	@Path("/nombre/")
+	@Path("/nombre")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Funcionario> getFuncionario(@QueryParam("nombre")String nombre){
 		List<Funcionario> lista = funcionarioDAO.getResultByNombre(nombre.toUpperCase(), null);
@@ -52,7 +52,7 @@ public class FuncionarioService {
 	}
 	
 	@GET
-	@Path("/mes/")
+	@Path("/mes")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Funcionario> getFuncionariosPorMes(@QueryParam("mes")String mes){
 		List<Funcionario> lista = funcionarioDAO.getResultByMes(mes.toLowerCase());
@@ -60,7 +60,7 @@ public class FuncionarioService {
 	}
 	
 	@GET
-	@Path("/salario/mes/")
+	@Path("/salario/mes")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Object[]> getFuncionariosSalariosPorMes(@QueryParam("mes")String mes){
 		List<Object[]> lista = funcionarioDAO.getResultByMesTotal(mes.toLowerCase());
