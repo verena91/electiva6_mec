@@ -21,9 +21,9 @@ Instalación
 
 7. Acceder desde el navegador, en la dirección donde se despliega el JBoss seguido del nombre del proyecto.
 
-**Ejemplo**
+    **Ejemplo**
 
-https://localhost:8080/electiva6
+    https://localhost:8080/electiva6
 
 **Para más detalles ir a:**
 
