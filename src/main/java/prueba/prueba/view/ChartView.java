@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.LineChartModel;
@@ -28,13 +29,15 @@ public class ChartView implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private LineChartModel animatedModel1;
-    private BarChartModel totalPorMes;
-    private DonutChartModel donutModel2;
     private PieChartModel pieModel2;
     private PieChartModel pieModel3;
     private PieChartModel pieModel4;
+    
+    private LineChartModel lineModel2;
 
+    Double junio;
+    Double julio;
+    Double agosto;
     
     @Inject
     private FuncionarioBC funcionarioBC;
@@ -42,28 +45,14 @@ public class ChartView implements Serializable {
     private List<Object> lista;
     private List<Object> listaPorConcepto;
     private List<Object> listaPorConceptoMes;
-    private BarChartModel barModel;
-
     
-    public BarChartModel getBarModel() {
-		return barModel;
-	}
-
-	public void setBarModel(BarChartModel barModel) {
-		this.barModel = barModel;
-	}
-
 	@PostConstruct
     public void init() {
+        junio = new Double(funcionarioBC.getTotalFuncionarios("junio")+"");
+        julio = new Double(funcionarioBC.getTotalFuncionarios("julio")+"");
+        agosto = new Double(funcionarioBC.getTotalFuncionarios("agosto")+"");
         createAnimatedModels();
-    }
- 
-    public LineChartModel getAnimatedModel1() {
-        return animatedModel1;
-    }
- 
-    public BarChartModel getTotalPorMes() {
-        return totalPorMes;
+
     }
  
     private void createAnimatedModels() {
@@ -73,63 +62,8 @@ public class ChartView implements Serializable {
     	listaPorConceptoMes = funcionarioBC.getPorConceptoMes("julio");
         Axis yAxis;
         Axis xAxis;
-         
-        //Gastos Total Por Mes
-        float min = 99999999999999999f;
-        float max = 0f;
-        for(Object ob: lista){
-        	Object[] objeto = (Object[])ob;
-        	if(Float.valueOf(objeto[2]+"").floatValue() > max)
-        		max = Float.valueOf(objeto[2]+"").floatValue();
-        	if(Float.valueOf(objeto[2]+"").floatValue() < min)
-        		min = Float.valueOf(objeto[2]+"").floatValue();
-        }
         
-        totalPorMes = initBarModel();
-        totalPorMes.setTitle("Gasto Total Por Mes En los ultimos 2 años (En concepto de Sueldos)");
-        totalPorMes.setAnimate(true);
-        totalPorMes.setLegendPosition("ne");
-        yAxis = totalPorMes.getAxis(AxisType.Y);
-        yAxis.setMin(0);
-        yAxis.setMax(100);
-        yAxis.setLabel("Sueldo");
-        xAxis = totalPorMes.getAxis(AxisType.X);
-        xAxis.setLabel("Mes");
-        
-        //Gastos Por Concepto
-
-        min = 99999999999999999f;
-        max = 0f;
-        for(Object ob: listaPorConcepto){
-        	Object[] objeto = (Object[])ob;
-        	if(Float.valueOf(objeto[2]+"").floatValue() > max)
-        		max = Float.valueOf(objeto[2]+"").floatValue();
-        	if(Float.valueOf(objeto[2]+"").floatValue() < min)
-        		min = Float.valueOf(objeto[2]+"").floatValue();
-        }
-        animatedModel1 = initLinearModel();
-        animatedModel1.setTitle("Gastos Por Concepto");
-        animatedModel1.setAnimate(true);
-        animatedModel1.setZoom(true);
-        
-        animatedModel1.setLegendPosition("se");
-        yAxis = animatedModel1.getAxis(AxisType.Y);
-        yAxis.setMin(0);
-        yAxis.setMax(10);
-        yAxis.setLabel("Monto");
-        xAxis = animatedModel1.getAxis(AxisType.X);
-        xAxis.setLabel("Bonificacion");
-        
-        //
-        
-        donutModel2 = initDonutModel();
-        donutModel2.setTitle("Custom Options");
-        donutModel2.setLegendPosition("e");
-        donutModel2.setSliceMargin(5);
-        donutModel2.setShowDataLabels(true);
-        donutModel2.setShadow(false);
-        
-        //
+        //Junio Torta
         pieModel2 = new PieChartModel();
         Double aux = new Double(0);
         for(Object ob: funcionarioBC.getPorConceptoMes("junio")){
@@ -141,48 +75,101 @@ public class ChartView implements Serializable {
         Double otros = total - aux;
     	pieModel2.set("Otros",otros);
          
-        pieModel2.setTitle("Total por Concepto en el mes de Julio");
-        pieModel2.setLegendPosition("e");
+        pieModel2.setTitle("Total por Concepto en el mes de Junio");
+        pieModel2.setLegendPosition("s");
         pieModel2.setFill(true);
         pieModel2.setShadow(true);
         pieModel2.setShowDataLabels(true);
-        pieModel2.setDiameter(500);
-        pieModel2.setLegendCols(2);
+        pieModel2.setDiameter(150);
+        pieModel2.setLegendCols(1);
+        
+        //Julio Torta
+        pieModel3 = new PieChartModel();
+        aux = new Double(0);
+        for(Object ob: funcionarioBC.getPorConceptoMes("julio")){
+        	Object[] objeto = (Object[])ob;
+        	pieModel3.set(objeto[0]+"",(Number) objeto[1]);
+        	aux = aux + new Double(objeto[1]+"");
+        }
+        total = new Double(funcionarioBC.getTotal("julio")+"");
+        otros = total - aux;
+        pieModel3.set("Otros",otros);
+         
+        pieModel3.setTitle("Total por Concepto en el mes de Julio");
+        pieModel3.setLegendPosition("s");
+        pieModel3.setFill(true);
+        pieModel3.setShadow(true);
+        pieModel3.setShowDataLabels(true);
+        pieModel3.setDiameter(150);
+        pieModel3.setLegendCols(1);
+        
+      //Agosto Torta
+        pieModel4 = new PieChartModel();
+        aux = new Double(0);
+        for(Object ob: funcionarioBC.getPorConceptoMes("agosto")){
+        	Object[] objeto = (Object[])ob;
+        	pieModel4.set(objeto[0]+"",(Number) objeto[1]);
+        	aux = aux + new Double(objeto[1]+"");
+        }
+        total = new Double(funcionarioBC.getTotal("agosto")+"");
+        otros = total - aux;
+        pieModel4.set("Otros",otros);
+         
+        pieModel4.setTitle("Total por Concepto en el mes de Agosto");
+        pieModel4.setLegendPosition("s");
+        pieModel4.setFill(true);
+        pieModel4.setShadow(true);
+        pieModel4.setShowDataLabels(true);
+        pieModel4.setDiameter(150);
+        pieModel4.setLegendCols(1);
         
         //
-        
-        barModel = initModel();
-        
-        barModel.setTitle("Total por Concepto mes de Agosto");
-        barModel.setLegendPosition("nw");
-        barModel.setLegendCols(3);
-        xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Mes");
-         
-        yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("%Monto");
+        lineModel2 = initCategoryModel();
+        lineModel2.setTitle("Total Por Mes");
+        lineModel2.setLegendPosition("e");
+        lineModel2.setShowPointLabels(true);
+        lineModel2.getAxes().put(AxisType.X, new CategoryAxis("Mes"));
+        yAxis = lineModel2.getAxis(AxisType.Y);
+        yAxis = lineModel2.getAxis(AxisType.Y);
+        yAxis.setLabel("Cantidad");
         yAxis.setMin(0);
-        yAxis.setMax(70);
+        yAxis.setMax(200);
+        Double maximo;
+        Double minimo;
+        
+        maximo = junio;
+        minimo = junio;
+        if(maximo < julio){
+        	maximo =  julio;
+        }
+        if(maximo < agosto){
+        	maximo =  agosto;
+        }
+        if(minimo > julio){
+        	minimo =  julio;
+        }
+        if(minimo > agosto){
+        	minimo = agosto;
+        }
+        
+        yAxis.setMin(15000);
+        yAxis.setMax(20000);
     }
-    
-    private BarChartModel initModel() {
-        BarChartModel model = new BarChartModel();
+    private LineChartModel initCategoryModel() {
+        LineChartModel model = new LineChartModel();
  
         ChartSeries boys = new ChartSeries();
-        boys.setLabel("Boys");
-        boys.set("2004", 120);
-        boys.set("2005", 100);
-        boys.set("2006", 44);
-        boys.set("2007", 150);
-        boys.set("2008", 25);
+        boys.setLabel("Numero de Funcionarios");
+        boys.set("Junio", junio);
+        boys.set("Julio", julio);
+        boys.set("Agosto", agosto);
  
-        ChartSeries girls = new ChartSeries();
-        girls.setLabel("Girls");
-        girls.set("Julio", 52);
-        girls.set("Junio", 60);
-        girls.set("2006", 110);
-        girls.set("2007", 135);
-        girls.set("2008", 120);
+        model.addSeries(boys);
+         
+        return model;
+    }
+    private BarChartModel initModel() {
+        BarChartModel model = new BarChartModel();
  
         ChartSeries concepto = new ChartSeries();
         Double aux = new Double(0);
@@ -216,6 +203,14 @@ public class ChartView implements Serializable {
         //model.addSeries(girls);
          
         return model;
+    }
+    
+    public List<Object[]> getMejoresPagados(){
+    	List<Object[]> lista = new ArrayList<Object[]>();
+    	for(Object ob: funcionarioBC.getMejoresPagados())
+    		lista.add((Object[]) ob);
+    	
+    	return lista; 
     }
     
     private DonutChartModel initDonutModel() {
@@ -322,14 +317,6 @@ public class ChartView implements Serializable {
         return model;
     }
 
-	public DonutChartModel getDonutModel2() {
-		return donutModel2;
-	}
-
-	public void setDonutModel2(DonutChartModel donutModel2) {
-		this.donutModel2 = donutModel2;
-	}
-
 	public PieChartModel getPieModel2() {
 		return pieModel2;
 	}
@@ -352,6 +339,14 @@ public class ChartView implements Serializable {
 
 	public void setPieModel4(PieChartModel pieModel4) {
 		this.pieModel4 = pieModel4;
+	}
+
+	public LineChartModel getLineModel2() {
+		return lineModel2;
+	}
+
+	public void setLineModel2(LineChartModel lineModel2) {
+		this.lineModel2 = lineModel2;
 	}
     
 }

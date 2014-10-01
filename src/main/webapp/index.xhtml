@@ -13,7 +13,7 @@
 				<h3 style="text-align: center">Exportar datos de PDF a CSV</h3>
 				<p:panel>
 					<h:outputText
-						value="Puede transformar el pdf de la planilla de funcionarios administrativos del MEC seleccionando el archivo haciendo clic luego en Procesar Archivo. Al finalizar el procesamiento puede descargar el archivo haciendo clic en Descargar CSV." />
+						value="Puede transformar el pdf de la planilla de funcionarios administrativos del MEC seleccionando el archivo y haciendo clic en Procesar Archivo. Al finalizar el procesamiento puede descargar el archivo haciendo clic en Descargar CSV." />
 					<br />
 					<br />
 					<h:form enctype="multipart/form-data">
@@ -41,65 +41,10 @@
 					</h:form>
 				</p:panel>
 			</p:tab>
-			<p:tab title="Buscador">
-				<h3 style="text-align: center">Buscador de funcionarios</h3>
-				<p:panel>
-					<h:form>
-						<table>
-							<tr>
-								<td><h:outputText
-										style="font-weight: bold;  color:#2E6E9E" value="Nombre:" /></td>
-								<td><p:inputText value="#{funcionarioMB.nombre}" /></td>
-								<td><p:commandButton value="Buscar"
-										actionListener="#{funcionarioMB.buscarPorNombre}"
-										update="result"></p:commandButton></td>
-							</tr>
-							<tr>
-								<td><h:outputText
-										style="font-weight: bold; color:#2E6E9E" value="CI:" /></td>
-								<td><p:inputText value="#{funcionarioMB.ci}" /></td>
-								<td><p:commandButton value="Buscar"
-										actionListener="#{funcionarioMB.buscarPorCedula}"
-										update="result"></p:commandButton></td>
-							</tr>
-						</table>
-						<br />
-						<h:outputText value="Se muestran los primeros 20 resultados." />
-						<br />
-						<br />
-						<p:dataTable value="#{funcionarioMB.resultados}" var="bean"
-							id="result" rows="20" emptyMessage="No se encuentran registros.">
-							<p:column headerText="Nombre">
-								<h:outputText value="#{bean.nombreCompleto}" />
-							</p:column>
-							<p:column headerText="CI">
-								<h:outputText value="#{bean.nroDocumento}" />
-							</p:column>
-							<p:column headerText="Mes-Año">
-								<h:outputText value="#{bean.mes}-#{bean.anho}" />
-							</p:column>
-							<p:column headerText="Dependencia">
-								<h:outputText value="#{bean.dependencia}" />
-							</p:column>
-							<p:column headerText="Cargo">
-								<h:outputText value="#{bean.cargo}" />
-							</p:column>
-							<p:column headerText="Objeto de gasto">
-								<h:outputText value="#{bean.nombreObjetoGasto}" />
-							</p:column>
-							<p:column headerText="Salario" style="text-align:right">
-								<h:outputText value="#{bean.salario}">
-									<f:convertNumber maxFractionDigits="1" />
-								</h:outputText>
-							</p:column>
-
-						</p:dataTable>
-					</h:form>
-				</p:panel>
-			</p:tab>
+			
 			<p:tab title="Resumen de datos">
 
-				<h3 style="text-align: center">Máximos pagos por conceptos</h3>
+				<h3 style="text-align: center">Máximos Pagos por Conceptos - Agosto</h3>
 				<p:panel>
 					<p:dataTable var="bean" value="#{datosMB.conceptos}">
 						<p:column headerText="Concepto">
@@ -112,12 +57,42 @@
 						</p:column>
 					</p:dataTable>
 				</p:panel>
+				
+				<h3 style="text-align: center">Funcionarios Mejores Pagados - Agosto</h3>
+				<p:panel>
+					<p:dataTable var="bean" value="#{chartView.mejoresPagados}">
+						<p:column headerText="Nombre">
+							<h:outputText value="#{bean[0]}" />
+						</p:column>
+						<p:column headerText="Cargo">
+							<h:outputText value="#{bean[2]}" />
+						</p:column>
+						<p:column headerText="Dependencia">
+							<h:outputText value="#{bean[3]}" />
+						</p:column>
+						<p:column style="text-align:right" headerText="Monto" width="95">
+							<h:outputText value="#{bean[1]}">
+								<f:convertNumber maxFractionDigits="1" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
 			</p:tab>
 			<p:tab title="Visualizaciones">
 
 				<h3 style="text-align: center">Visualizaciones</h3>
 				<p:panel>
-					Agregar los gráficos.
+				<table>
+				<tr>
+				<td><p:chart type="pie" model="#{chartView.pieModel2}" 	style="width:30%; height:500px;" />
+				</td>
+				<td><p:chart type="pie" model="#{chartView.pieModel3}" 	style="width:30%; height:500px;" />
+				</td>
+				<td><p:chart type="pie" model="#{chartView.pieModel4}" 	style="width:30%; height:500px;" />
+				</td>
+				</tr>
+				</table>
+				<p:chart type="line" model="#{chartView.lineModel2}" style="height:300px;"/>
 				</p:panel>
 			</p:tab>
 		</p:tabView>

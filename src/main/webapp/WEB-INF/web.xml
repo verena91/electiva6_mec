@@ -36,13 +36,9 @@
 	
 	<servlet-mapping>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
+		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>javax.ws.rs.core.Application</servlet-name>
-		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>redmond</param-value>

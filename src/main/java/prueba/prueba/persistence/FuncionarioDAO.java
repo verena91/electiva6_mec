@@ -90,13 +90,34 @@ public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 		
 	}
 	
-	public List<Funcionario> getResultByNombre(String nombre){
-		Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '%"+nombre+"%'");
+	public List<Funcionario> getResultByNombre(String nombre, String mes){
+		if(mes!=null){
+			Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '"+nombre+"%' and fun.mes='"+mes+"'");
+			return q.getResultList();
+		}else{
+			Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '"+nombre+"%'");
+			return q.getResultList();
+		}
+	}
+	
+	public List<Funcionario> getResultByCI(String ci, String mes){
+		if(mes!=null){
+			Query q = em.createQuery("select fun from Funcionario fun where fun.nroDocumento='"+ci+"' and fun.mes='"+mes+"'");
+			return q.getResultList();
+		}else{
+			Query q = em.createQuery("select fun from Funcionario fun where fun.nroDocumento='"+ci+"'");
+			return q.getResultList();
+		}
+		
+	}
+	
+	public List<Funcionario> getResultByMes(String mes){
+		Query q = em.createQuery("select fun from Funcionario fun where fun.mes='"+mes+"'");
 		return q.getResultList();
 	}
 	
-	public List<Funcionario> getResultByCI(String ci){
-		Query q = em.createQuery("select fun from Funcionario fun where fun.nroDocumento='"+ci+"'");
+	public List<Object[]> getResultByMesTotal(String mes){
+		Query q = em.createNativeQuery("select nombrecompleto, sum(salario), max(cargo) as cargo, max(dependencia) as dependencia from funcionario where mes='"+mes+"' group by nombrecompleto order by sum desc");
 		return q.getResultList();
 	}
 	
@@ -107,7 +128,7 @@ public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 	}
 	
 	public List<Object[]> getMaxConceptos(){
-		Query q = em.createNativeQuery("select max(f.salario) as salario, f.concepto from funcionario f group by f.concepto order by salario desc");
+		Query q = em.createNativeQuery("select max(f.salario) as salario, f.concepto from funcionario f where f.mes='agosto' group by f.concepto order by salario desc");
 		List<Object[]> obj =q.getResultList();
 		return obj;
 		
@@ -152,5 +173,19 @@ public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 		
 	}
 	
-
+	public Object getTotalFuncionarios(String mes){
+		Query q = em.createNativeQuery("select count(nombrecompleto) from funcionario where mes = :mes");
+		q.setParameter("mes", mes);
+		return q.getSingleResult();
+		
+		
+	}
+	
+	public List<Object> getMejoresPagados(){
+		Query q = em.createNativeQuery("select fun.nombrecompleto, sum(fun.salario) total, max(fun.cargo) cargo, max (fun.dependencia) dependencia "
+				+ " from funcionario fun where mes='agosto'"
+				+ " group by fun.nombrecompleto "
+				+ " order by sum(fun.salario) desc, fun.nombrecompleto limit 10");
+		return q.getResultList();
+	}
 }
