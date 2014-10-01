@@ -3,12 +3,19 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
-		    <p:chart type="line" model="#{chartView.animatedModel1}" style="width:400px;" />
-		</h:panelGrid>
+		
 		<h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
 		    <p:chart type="bar" model="#{chartView.totalPorMes}"  />
 		</h:panelGrid>
+		 
+		<h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
+		<p:chart type="pie" model="#{chartView.pieModel2}" 	 />
+		</h:panelGrid>
+		
+		<h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
+		<p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
+		</h:panelGrid>
+		
 	</ui:define>
 
 </ui:composition>

@@ -37,4 +37,13 @@ public class FuncionarioBC {
 	public List<Object> getGastosPorConcepto(){
 		return this.funcionarioDAO.getGastosPorConcepto();
 	}
+	
+	public List<Object> getPorConceptoMes(String mes){
+		return this.funcionarioDAO.getPorConceptoMes(mes);
+	}
+	public Object getTotal(String mes){
+		return this.funcionarioDAO.getTotal(mes);
+
+	}
+
 }
