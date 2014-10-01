@@ -27,5 +27,5 @@ Instalación
 
 **Para más detalles ir a:**
 
-[Blog Open Data FP-UNA!](www.opendata.pol.una.py/nombre-del-blog)
+[Blog Open Data FP-UNA!](http://opendata.pol.una.py/)
 
