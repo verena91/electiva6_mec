@@ -17,9 +17,11 @@ Instalación
     
 5. Ejecutar el script de inserción de los datos en la base de datos si se quiere utilizar los servicios web localmente.
 
-6. Deployar el proyecto en el servidor JBoss.
+6. Crear el directorio **pdf** dentro del directorio /opt del sistema. Este directorio es necesario para que se almacen los archivos PDF que se suben para ser transformados luego a CSV.
 
-7. Acceder desde el navegador, en la dirección donde se despliega el JBoss seguido del nombre del proyecto.
+7. Deployar el proyecto en el servidor JBoss.
+
+8. Acceder desde el navegador, en la dirección donde se despliega el JBoss seguido del nombre del proyecto.
 
     **Ejemplo**
 
