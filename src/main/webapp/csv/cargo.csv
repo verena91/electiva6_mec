@@ -1,0 +1,181 @@
+nro,cargo
+1,ACTUARIO/A
+2,ADMINISTRADOR
+3,ALBAÑIL
+4,ANALISTA DE SISTEMAS
+5,ASESOR
+6,ASESOR DEPARTAMENTAL
+7,ASESOR JURIDICO
+8,ASESOR LEGAL
+9,ASESOR TECNICO
+10,Asistente
+11,ASISTENTE ADMINISTRATIVO
+12,ASISTENTE DE EVALUACION
+13,ASISTENTE DE PRENSA
+14,ASISTENTE FISCAL
+15,ASISTENTE LEGAL
+16,ASISTENTE TECNICO
+17,ASISTENTE TECNICO ADM
+18,AUDITOR
+19,AUDITOR INTERNO
+20,Auxiliar
+21,AUXILIAR ADMINISTRATIVO
+22,AUXILIAR DE SERVICIOS
+23,AUXILIAR TECNICO ADMINIS.
+24,AUXILIAR TECNICO INFORMATICO
+25,Bibliotecario
+26,Bibliotecario (Dinamizador/a de CRA)
+27,BIBLIOTECARIO I
+28,CAJERO
+29,CARPINTERO
+30,Catedrático
+31,Catedrático de Antropología Social y Cultural
+32,Catedrático de Arte Elemental
+33,Catedrático de Artes
+34,Catedrático de Biología
+35,Catedrático de Castellano
+36,Catedrático de Ciencias de la Naturaleza
+37,Catedrático de Ciencias Naturales y Salud
+38,Catedrático de Computación
+39,Catedrático de Comunicación
+40,Catedrático de Danza
+41,Catedrático de Economía y Gestión
+42,Catedrático de Educación Artística
+43,Catedrático de Educación Etica y Ciudadana
+44,Catedrático de Educación Física
+45,Catedrático de Educación para el Arte
+46,Catedrático de Estadística
+47,Catedrático de Filosofia
+48,Catedrático de Física
+49,Catedrático de Formación Ética y Ciudadana
+50,Catedrático de Geología
+51,Catedrático de Guaraní Ñe'e
+52,Catedrático de Historia y Geografía
+53,Catedrático de Investigación Social
+54,Catedrático de Lengua Extranjera
+55,Catedrático de Lengua Guaraní
+56,Catedrático de Lengua y Literatura Castellana
+57,Catedrático de Matemática
+58,Catedrático de Medio Social
+59,Catedrático de Mercadotecnia
+60,"Catedrático de Orientación Educacional, SocioLaboral"
+61,Catedrático de Proyecto Educativo Comunitario-Institucional
+62,Catedrático de Psicología
+63,Catedrático de Química
+64,Catedrático de Salud
+65,Catedrático de Sociología y Antropología Cultural
+66,Catedrático de Trabajo y Tecnología
+67,CELADOR
+68,CHOFER
+69,CONTADOR
+70,COORDINADOR
+71,COORDINADOR/A ADMINISTRATIVO/A
+72,COORDINADOR AREA INFORMATICA
+73,COORDINADOR DE AREA I
+74,COORDINADOR DE PROYECTO
+75,COORDINADOR DE UDES
+76,Coordinador Escuela Empresa
+77,COORDINADOR TECNICO I
+78,Coordinador Técnico Pedagógico
+79,DIRECTOR
+80,"Director de Centros (Recursos, Modelos y Formación Profesional) (Educación Permanente)"
+81,Director de Instituciones de Educación Media
+82,DIRECTOR GENERAL (ADMINISTRACION CENTRAL)
+83,DIRECTOR I
+84,DIRECTOR II
+85,DIRECTOR PEDAGOGICO III
+86,DISEÑADOR GRAFICO
+87,Docente de Servicio de Apoyo
+88,Docente Tecnico
+89,DOCENTE TECNICO I
+90,DOCENTE TECNICO III
+91,DOCTOR
+92,Educador Comunitario
+93,Educador de Adultos
+94,ELECTRICISTA
+95,ENCARGADO DE ACADEMIAS
+96,ENCARGADO DE ARCHIVO
+97,ENCARGADO DE BIENES Y PATRIMONIO
+98,ENCARGADO DE DEPOSITO
+99,ENCARGADO DE DESPACHO
+100,ENCARGADO DE DESPACHO (DIRECCION DE NIVEL)
+101,ENCARGADO DE DESPACHO (DIRECCION GENERAL)
+102,ENCARGADO DE DESPACHO (JEFATURA)
+103,ENCARGADO DE DESPACHO SUPERVISOR
+104,ENCARGADO DE LABORATORIO
+105,ENCARGADO DE LABORATORIO DE INFORMATICA
+106,ENFERMERO/A
+107,ESTIBADOR
+108,Evaluador Educacional
+109,EVALUADOR I
+110,FISCAL DE EDUCACION
+111,FISCAL DE OBRAS
+112,FOTOGRAFO/A
+113,GERENTE ADMINISTRATIVO
+114,Instructor
+115,Instructor de Formación Profesional Inicial (Familia Profesional: Artesanía)
+116,INSTRUCTOR LABORAL
+117,Instructor Musical
+118,INTENDENTE
+119,JARDINERO
+120,JEFE DE DEPARTAMENTO
+121,JEFE DE DIVISION / SECCION
+122,Jefe de Estudio y/o Profesor Guía
+123,JEFE MOVIM. PERS. (SUPERV)
+124,JUEZ ADMINISTRATIVO
+125,Maestro de Grado
+126,MEDICO/A
+127,MIEMBRO DEL CONSEJO
+128,M I N I S T R O
+129,NUTRICIONISTA
+130,ODONTOLOGO
+131,OPERADOR DE COMPUTADORAS
+132,Orientador
+133,ORIENTADOR EDUCACIONAL
+134,PERCEPTOR
+135,PINTOR
+136,PROFESIONAL
+137,PROFESIONAL I
+138,PROFESIONAL II
+139,PROFESOR AREA ESPECIAL I
+140,PROFESOR AREA ESPECIAL II
+141,"Profesor de Alfabetización (1º, 2º y 3º Ciclo EEB para Jóvenes y Adultos)"
+142,Profesor de Grado (1º y 2º ciclos)
+143,Profesor de Manualidades
+144,Profesor Guia
+145,PROFESOR GUIA I
+146,PROFESOR GUIA II
+147,PROFESOR GUIA III
+148,PROFESOR M.J. I
+149,PROFESOR M.J. III
+150,PSICOLOGO
+151,PSICOLOGO I
+152,PSICOLOGO III
+153,PSICOPEDAGOGO
+154,SECRETARIO/A
+155,SECRETARIO/A II
+156,SECRETARIO/A III
+157,SECRETARIO/A PRIVADO/A
+158,SECRETARIO GENERAL
+159,SECRETARIO I
+160,SERENO
+161,SUPERVISOR
+162,SUPERVISOR II
+163,TECNICO
+164,TECNICO AREA INFORMATICA
+165,TECNICO DE UDES
+166,TECNICO EDUCACION ESPECIAL
+167,TECNICO EDUCACION INICIAL
+168,TECNICO EDUCACION MEDIA
+169,TECNICO E.E.B. 1º Y 2º CICLO
+170,TECNICO E.E.B. 3er CICLO
+171,TECNICO EJA
+172,TECNICO I
+173,TECNICO II
+174,TECNICO PEDAGOGICO
+175,Trabajador/a Social
+176,VERIFICADOR DE INGRESOS DE RECURSOS
+177,Vicedirector en Educación Inicial y EEB
+178,VICE DIRECTOR I
+179,VICE-MINISTRO
+180,
