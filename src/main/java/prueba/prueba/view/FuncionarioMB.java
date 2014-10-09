@@ -45,13 +45,4 @@ public class FuncionarioMB {
 		this.resultados = resultados;
 	}
 
-	public void buscarPorNombre() {
-		if(nombre.compareTo("")!=0){
-			this.resultados = funcionarioBC.getResultByNombre(nombre.toUpperCase());
-		}
-	}
-
-	public void buscarPorCedula() {
-		this.resultados = funcionarioBC.getResultByCI(ci);
-	}
 }
