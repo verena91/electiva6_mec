@@ -6,221 +6,233 @@
 	template="/template/main.xhtml">
 
 	<ui:define name="body">
+		<br />
+		<h3 style="text-align: center">Exportar datos de PDF a CSV</h3>
+		<p:panel>
+			<h:outputText
+				value="Puede transformar el pdf de la planilla de funcionarios administrativos del MEC seleccionando el archivo y haciendo clic en Procesar Archivo. Al finalizar el procesamiento puede descargar el archivo haciendo clic en Descargar CSV. " />
+			<h:outputLink
+				value="http://datos.mec.gov.py/data/nomina_administrativos"
+				title="http://datos.mec.gov.py/data/nomina_administrativos">
+					http://datos.mec.gov.py/data/nomina_administrativos
+					</h:outputLink>
+			<br />
+			<br />
+			<h:form enctype="multipart/form-data">
+				<p:messages showDetail="true" />
 
-		<p:tabView>
-			<p:tab title="Visualizaciones">
+				<table width="100%">
+					<tr>
+						<td align="center"><p:fileUpload value="#{pdfMB.file}"
+								mode="simple" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
+							<p:commandButton value="Procesar Archivo" ajax="false"
+								actionListener="#{pdfMB.upload}" /></td>
+					</tr>
+				</table>
+			</h:form>
+			<h:form prependId="aa">
+				<table width="100%">
+					<tr>
+						<td align="center"><p:commandButton value="Descargar CSV"
+								ajax="false" actionListener="#{pdfMB.descargar}"
+								disabled="#{pdfMB.disable}">
+								<p:fileDownload value="#{pdfMB.downFile}" />
+							</p:commandButton></td>
+					</tr>
+					<tr>
+						<td align="center"></td>
+					</tr>
+				</table>
+			</h:form>
+		</p:panel>
+		<h3 style="text-align: center">CSVs de tablas primarias</h3>
 
-				<h3 style="text-align: center">Visualizaciones</h3>
-				<p:panel>
-					<script
-						id="infogram_0_gastos-por-concepto-junio-julio-y-agosto-2014"
-						src="//e.infogr.am/js/embed.js" type="text/javascript"></script>
-					<div
-						style="width: 100%; border-top: 1px solid #acacac; padding-top: 3px; font-family: Arial; font-size: 10px; text-align: center;">
-						<a target="_blank"
-							href="//infogr.am/gastos-por-concepto-junio-julio-y-agosto-2014"
-							style="color: #acacac; text-decoration: none;">Gastos por
-							concepto: junio, julio y agosto 2014.</a> | <a
-							style="color: #acacac; text-decoration: none;" href="//infogr.am"
-							target="_blank">Create Infographics</a>
-					</div>
-					<script
-						id="infogram_0_comparativa-de-gastos-por-concepto-de-los-meses-junio-julio-y-agosto-2014"
-						src="//e.infogr.am/js/embed.js" type="text/javascript"></script>
-					<div
-						style="width: 100%; border-top: 1px solid #acacac; padding-top: 3px; font-family: Arial; font-size: 10px; text-align: center;">
-						<a target="_blank"
-							href="//infogr.am/comparativa-de-gastos-por-concepto-de-los-meses-junio-julio-y-agosto-2014"
-							style="color: #acacac; text-decoration: none;">Comparativa de
-							gastos por concepto de los meses: junio, julio y agosto 2014.</a> | <a
-							style="color: #acacac; text-decoration: none;" href="//infogr.am"
-							target="_blank">Create Infographics</a>
-					</div>
-					<table>
-						<tr>
-							<td><p:chart type="pie" model="#{chartView.pieModel2}"
-									style="width:30%; height:500px;" /></td>
-							<td><p:chart type="pie" model="#{chartView.pieModel3}"
-									style="width:30%; height:500px;" /></td>
-							<td><p:chart type="pie" model="#{chartView.pieModel4}"
-									style="width:30%; height:500px;" /></td>
-						</tr>
-					</table>
-					<p:chart type="line" model="#{chartView.lineModel2}"
-						style="height:300px;" />
+		<p:panel>
+			<h:form>
 
-				</p:panel>
-			</p:tab>
-			<p:tab title="PDF a CSV">
-
-				<h3 style="text-align: center">Exportar datos de PDF a CSV</h3>
-				<p:panel>
-					<h:outputText
-						value="Puede transformar el pdf de la planilla de funcionarios administrativos del MEC seleccionando el archivo y haciendo clic en Procesar Archivo. Al finalizar el procesamiento puede descargar el archivo haciendo clic en Descargar CSV." />
-					<br />
-					<br />
-					<h:form enctype="multipart/form-data">
-						<p:messages showDetail="true" />
-
-						<table width="100%">
-							<tr>
-								<td align="center"><p:fileUpload value="#{pdfMB.file}"
-										mode="simple" sizeLimit="1000000" allowTypes="/(\.|\/)(pdf)$/" />
-									<p:commandButton value="Procesar Archivo" ajax="false"
-										actionListener="#{pdfMB.upload}" /></td>
-							</tr>
-						</table>
-					</h:form>
-					<h:form prependId="aa">
-						<table width="100%">
-							<tr>
-								<td align="center"><p:commandButton value="Descargar CSV"
-										ajax="false" actionListener="#{pdfMB.descargar}"
-										disabled="#{pdfMB.disable}">
-										<p:fileDownload value="#{pdfMB.downFile}" />
-									</p:commandButton></td>
-							</tr>
-							<tr>
-								<td align="center"></td>
-							</tr>
-						</table>
-					</h:form>
-				</p:panel>
-				<h3 style="text-align: center">CSVs de tablas primarias</h3>
-
-				<p:panel>
-					<h:form>
-
-						<p:panelGrid>
-							<f:facet name="header">
-								<p:row>
-									<p:column>Nombre</p:column>
-									<p:column>Descripción</p:column>
-									<p:column>Descarga</p:column>
-								</p:row>
-							</f:facet>
-							<p:row>
-								<p:column>Objetos Gasto</p:column>
-								<p:column><strong>nombre_objeto_gasto</strong>: nombre del objeto gasto. <br /><strong>objeto_gasto</strong>: codigo del objeto gasto.</p:column>
-								<p:column>
-									<p:commandButton ajax="false"
-										value="#{datosMB.fileObjetoGasto.name}"
-										onclick="PrimeFaces.monitorDownload(start, stop);"
-										icon="ui-icon-arrowthick-1-s">
-										<p:fileDownload value="#{datosMB.fileObjetoGasto}" />
-									</p:commandButton>
-								</p:column>
-							</p:row>
-							<p:row>
-								<p:column>Conceptos</p:column>
-								<p:column><strong>nro</strong>: índice de la tabla. <br /><strong>concepto</strong>: nombre del concepto.</p:column>
-								<p:column>
-									<p:commandButton ajax="false"
-										value="#{datosMB.fileConcepto.name}"
-										onclick="PrimeFaces.monitorDownload(start, stop);"
-										icon="ui-icon-arrowthick-1-s">
-										<p:fileDownload value="#{datosMB.fileConcepto}" />
-									</p:commandButton>
-								</p:column>
-							</p:row>
-							<p:row>
-								<p:column>Estadísticas de conceptos</p:column>
-								<p:column><strong>concepto</strong>: nombre del concepto. <br /><strong>maximo</strong>: máximo valor encontrado para el concepto<br />
-								<strong>minimo</strong>: mínimo valor encontrado para el concepto <br />
-								<strong>promedio</strong>: promedio de todos los valores encontrados para el concepto </p:column>
-								<p:column>
-									<p:commandButton ajax="false"
-										value="#{datosMB.fileConceptoEstadisticas.name}"
-										onclick="PrimeFaces.monitorDownload(start, stop);"
-										icon="ui-icon-arrowthick-1-s">
-										<p:fileDownload value="#{datosMB.fileConceptoEstadisticas}" />
-									</p:commandButton>
-								</p:column>
-							</p:row>
-							<p:row>
-								<p:column>Cargos</p:column>
-								<p:column><strong>nro</strong>: índice de la tabla. <br /><strong>cargo</strong>: nombre del cargo.</p:column>
-								<p:column>
-									<p:commandButton ajax="false" value="#{datosMB.fileCargo.name}"
-										onclick="PrimeFaces.monitorDownload(start, stop);"
-										icon="ui-icon-arrowthick-1-s">
-										<p:fileDownload value="#{datosMB.fileCargo}" />
-									</p:commandButton>
-								</p:column>
-							</p:row>
-							<p:row>
-								<p:column>Dependencias</p:column>
-								<p:column><strong>nro</strong>: índice de la tabla. <br /><strong>dependencia</strong>: nombre de la dependencia.<br />
-								</p:column>
-								<p:column>
-									<p:commandButton ajax="false"
-										value="#{datosMB.fileDependencia.name}"
-										onclick="PrimeFaces.monitorDownload(start, stop);"
-										icon="ui-icon-arrowthick-1-s">
-										<p:fileDownload value="#{datosMB.fileDependencia}" />
-									</p:commandButton>
-								</p:column>
-							</p:row>
-							<p:row>
-								<p:column>Rubro</p:column>
-								<p:column><strong>rubro</strong>: nombre del rubro. <br /><strong>monto_rubro</strong>: monto en guaraníes correspondiente al rubro.<br />
-								</p:column>
-								<p:column>
-									<p:commandButton ajax="false" value="#{datosMB.fileRubro.name}"
-										onclick="PrimeFaces.monitorDownload(start, stop);"
-										icon="ui-icon-arrowthick-1-s">
-										<p:fileDownload value="#{datosMB.fileRubro}" />
-									</p:commandButton>
-								</p:column>
-							</p:row>
-							<p:row>
-								<p:column colspan="3"><small> * Los meses contemplados son junio, julio y agosto.</small></p:column>
-							</p:row>
-						</p:panelGrid>
-					</h:form>
-				</p:panel>
-			</p:tab>
-
-			<p:tab title="Resumen de datos">
-
-				<h3 style="text-align: center">Máximos Pagos por Conceptos -
-					Agosto</h3>
-				<p:panel>
-					<p:dataTable var="bean" value="#{datosMB.conceptos}">
-						<p:column headerText="Concepto">
-							<h:outputText value="#{bean.concepto}" />
+				<p:panelGrid>
+					<f:facet name="header">
+						<p:row>
+							<p:column>Nombre</p:column>
+							<p:column>Descripción</p:column>
+							<p:column>Descarga</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column>Objetos Gasto</p:column>
+						<p:column>
+							<strong>nombre_objeto_gasto</strong>: nombre del objeto gasto. <br />
+							<strong>objeto_gasto</strong>: codigo del objeto gasto.</p:column>
+						<p:column>
+							<p:commandButton ajax="false"
+								value="#{datosMB.fileObjetoGasto.name}"
+								onclick="PrimeFaces.monitorDownload(start, stop);"
+								icon="ui-icon-arrowthick-1-s">
+								<p:fileDownload value="#{datosMB.fileObjetoGasto}" />
+							</p:commandButton>
 						</p:column>
-						<p:column style="text-align:right" headerText="Monto">
-							<h:outputText value="#{bean.monto}">
-								<f:convertNumber maxFractionDigits="1" />
-							</h:outputText>
+					</p:row>
+					<p:row>
+						<p:column>Conceptos</p:column>
+						<p:column>
+							<strong>nro</strong>: índice de la tabla. <br />
+							<strong>concepto</strong>: nombre del concepto.</p:column>
+						<p:column>
+							<p:commandButton ajax="false"
+								value="#{datosMB.fileConcepto.name}"
+								onclick="PrimeFaces.monitorDownload(start, stop);"
+								icon="ui-icon-arrowthick-1-s">
+								<p:fileDownload value="#{datosMB.fileConcepto}" />
+							</p:commandButton>
 						</p:column>
-					</p:dataTable>
-				</p:panel>
+					</p:row>
+					<p:row>
+						<p:column>Estadísticas de conceptos</p:column>
+						<p:column>
+							<strong>concepto</strong>: nombre del concepto. <br />
+							<strong>maximo</strong>: máximo valor encontrado para el concepto<br />
+							<strong>minimo</strong>: mínimo valor encontrado para el concepto <br />
+							<strong>promedio</strong>: promedio de todos los valores encontrados para el concepto </p:column>
+						<p:column>
+							<p:commandButton ajax="false"
+								value="#{datosMB.fileConceptoEstadisticas.name}"
+								onclick="PrimeFaces.monitorDownload(start, stop);"
+								icon="ui-icon-arrowthick-1-s">
+								<p:fileDownload value="#{datosMB.fileConceptoEstadisticas}" />
+							</p:commandButton>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Cargos</p:column>
+						<p:column>
+							<strong>nro</strong>: índice de la tabla. <br />
+							<strong>cargo</strong>: nombre del cargo.</p:column>
+						<p:column>
+							<p:commandButton ajax="false" value="#{datosMB.fileCargo.name}"
+								onclick="PrimeFaces.monitorDownload(start, stop);"
+								icon="ui-icon-arrowthick-1-s">
+								<p:fileDownload value="#{datosMB.fileCargo}" />
+							</p:commandButton>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Dependencias</p:column>
+						<p:column>
+							<strong>nro</strong>: índice de la tabla. <br />
+							<strong>dependencia</strong>: nombre de la dependencia.<br />
+						</p:column>
+						<p:column>
+							<p:commandButton ajax="false"
+								value="#{datosMB.fileDependencia.name}"
+								onclick="PrimeFaces.monitorDownload(start, stop);"
+								icon="ui-icon-arrowthick-1-s">
+								<p:fileDownload value="#{datosMB.fileDependencia}" />
+							</p:commandButton>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Rubro</p:column>
+						<p:column>
+							<strong>rubro</strong>: nombre del rubro. <br />
+							<strong>monto_rubro</strong>: monto en guaraníes correspondiente al rubro.<br />
+						</p:column>
+						<p:column>
+							<p:commandButton ajax="false" value="#{datosMB.fileRubro.name}"
+								onclick="PrimeFaces.monitorDownload(start, stop);"
+								icon="ui-icon-arrowthick-1-s">
+								<p:fileDownload value="#{datosMB.fileRubro}" />
+							</p:commandButton>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="3">
+							<small> * Los meses contemplados son junio, julio y
+								agosto.</small>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+		</p:panel>
+		<h3 style="text-align: center">Visualizaciones</h3>
+		<p:panel>
+			<script id="infogram_0_gastos-por-concepto-junio-julio-y-agosto-2014"
+				src="//e.infogr.am/js/embed.js" type="text/javascript"></script>
+			<div
+				style="width: 100%; border-top: 1px solid #acacac; padding-top: 3px; font-family: Arial; font-size: 10px; text-align: center;">
+				<a target="_blank"
+					href="//infogr.am/gastos-por-concepto-junio-julio-y-agosto-2014"
+					style="color: #acacac; text-decoration: none;">Gastos por
+					concepto: junio, julio y agosto 2014.</a> | <a
+					style="color: #acacac; text-decoration: none;" href="//infogr.am"
+					target="_blank">Create Infographics</a>
+			</div>
+			<script
+				id="infogram_0_comparativa-de-gastos-por-concepto-de-los-meses-junio-julio-y-agosto-2014"
+				src="//e.infogr.am/js/embed.js" type="text/javascript"></script>
+			<div
+				style="width: 100%; border-top: 1px solid #acacac; padding-top: 3px; font-family: Arial; font-size: 10px; text-align: center;">
+				<a target="_blank"
+					href="//infogr.am/comparativa-de-gastos-por-concepto-de-los-meses-junio-julio-y-agosto-2014"
+					style="color: #acacac; text-decoration: none;">Comparativa de
+					gastos por concepto de los meses: junio, julio y agosto 2014.</a> | <a
+					style="color: #acacac; text-decoration: none;" href="//infogr.am"
+					target="_blank">Create Infographics</a>
+			</div>
+			<br />
+			<p:outputLabel value="Se puede observar que los conceptos remuneración extraordinaria, remuneración adicional, honorarios de personal docente y honorarios profesionales solo aparecen en el mes de agosto. Además, se puede ver que en el listado de Funcionarios Administrativos del MEC cuya finalidad es mostrar el detalle de todos los funcionarios administrativos existe el concepto “Honorarios de personal docente”, sin embargo en el portal de la Institución existe otro listado para los funcionarios docentes cuyo nombre es Funcionarios Docentes del MEC."></p:outputLabel>
+			<br />
+			<br />
+			<table>
+				<tr>
+					<td><p:chart type="pie" model="#{chartView.pieModel2}"
+							style="width:30%; height:500px;" /></td>
+					<td><p:chart type="pie" model="#{chartView.pieModel3}"
+							style="width:30%; height:500px;" /></td>
+					<td><p:chart type="pie" model="#{chartView.pieModel4}"
+							style="width:30%; height:500px;" />
+					</td>
+				</tr>
+			</table>
+			<p:chart type="line" model="#{chartView.lineModel2}"
+				style="height:300px;" />
+			<p:outputLabel value="Se puede ver que se contrataron 313 funcionarios administrativos más en julio y 1730 más en agosto. Esta gran diferencia entre agosto y los dos primeros meses puede deberse a que en agosto aparecen 219 funcionarios con cargo de catedrático, mientras que en junio y julio existen 9 funcionarios con cargo. En todos los meses existen 24 funcionarios con cargo de docente." />
+		</p:panel>
 
-				<h3 style="text-align: center">Funcionarios Mejores Pagados -
-					Agosto</h3>
-				<p:panel>
-					<p:dataTable var="bean" value="#{chartView.mejoresPagados}">
-						<p:column headerText="Nombre">
-							<h:outputText value="#{bean[0]}" />
-						</p:column>
-						<p:column headerText="Cargo">
-							<h:outputText value="#{bean[2]}" />
-						</p:column>
-						<p:column headerText="Dependencia">
-							<h:outputText value="#{bean[3]}" />
-						</p:column>
-						<p:column style="text-align:right" headerText="Monto" width="95">
-							<h:outputText value="#{bean[1]}">
-								<f:convertNumber maxFractionDigits="1" />
-							</h:outputText>
-						</p:column>
-					</p:dataTable>
-				</p:panel>
-			</p:tab>
+		<h3 style="text-align: center">Máximos Pagos por Conceptos -
+			Agosto</h3>
+		<p:panel>
+			<p:dataTable var="bean" value="#{datosMB.conceptos}">
+				<p:column headerText="Concepto">
+					<h:outputText value="#{bean.concepto}" />
+				</p:column>
+				<p:column style="text-align:right" headerText="Monto">
+					<h:outputText value="#{bean.monto}">
+						<f:convertNumber maxFractionDigits="1" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
 
-		</p:tabView>
+		<h3 style="text-align: center">Funcionarios Mejores Pagados -
+			Agosto</h3>
+		<p:panel>
+			<p:dataTable var="bean" value="#{chartView.mejoresPagados}">
+				<p:column headerText="Nombre">
+					<h:outputText value="#{bean[0]}" />
+				</p:column>
+				<p:column headerText="Cargo">
+					<h:outputText value="#{bean[2]}" />
+				</p:column>
+				<p:column headerText="Dependencia">
+					<h:outputText value="#{bean[3]}" />
+				</p:column>
+				<p:column style="text-align:right" headerText="Monto" width="95">
+					<h:outputText value="#{bean[1]}">
+						<f:convertNumber maxFractionDigits="1" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+		</p:panel>
 
 	</ui:define>
 

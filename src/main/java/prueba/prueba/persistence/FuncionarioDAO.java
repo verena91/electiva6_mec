@@ -92,10 +92,10 @@ public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 	
 	public List<Funcionario> getResultByNombre(String nombre, String mes){
 		if(mes!=null){
-			Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '"+nombre+"%' and fun.mes='"+mes+"'");
+			Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '%"+nombre+"%' and fun.mes='"+mes+"'");
 			return q.getResultList();
 		}else{
-			Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '"+nombre+"%'");
+			Query q = em.createQuery("select fun from Funcionario fun where fun.nombreCompleto like '%"+nombre+"%'");
 			return q.getResultList();
 		}
 	}
