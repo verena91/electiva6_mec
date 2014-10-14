@@ -7,17 +7,26 @@
 
 	<ui:define name="body">
 		<br />
-		<h3 style="text-align: center">Exportar datos de PDF a CSV</h3>
+		<br />
 		<p:panel>
-			<h:outputText
-				value="DICCIONARIO DE DATOS" />
+		<h:outputLink
+		value="index.jsf"
+		title="Ir al Inicio">
+			<h3>Ir al Inicio</h3>
+			</h:outputLink>
+		</p:panel>
+		<br />
+		<h3 style="text-align: center">---DICCIONARIO DE DATOS---</h3>
+		<p:panel>
 			<br />
 			<br />
-			<p:dataTable var="dato" value="chartView.diccionario">
-			<p:column>
+			<p:dataTable var="dato" value="#{chartView.datos}">
+			<p:column headerText="Nombre del Campo" width="15%" style="text-align: right">
+			<h:outputText value="#{dato.campo}"></h:outputText>
 			</p:column>
-			
-			
+			<p:column headerText="Descripcion del Campo" style="text-align: left">
+			<h:outputText value="#{dato.descripcion}"></h:outputText>
+			</p:column>
 			</p:dataTable>
 			
 		</p:panel>

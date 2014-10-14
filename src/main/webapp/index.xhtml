@@ -7,6 +7,15 @@
 
 	<ui:define name="body">
 		<br />
+		<br />
+		<p:panel>
+		<h:outputLink
+		value="diccionario.jsf"
+		title="Diccionario de Datos">
+			<h3>Ir al Diccionario de Datos</h3>
+			</h:outputLink>
+		</p:panel>
+		<br />
 		<h3 style="text-align: center">Exportar datos de PDF a CSV</h3>
 		<p:panel>
 			<h:outputText
@@ -30,7 +39,8 @@
 					</tr>
 				</table>
 			</h:form>
-			<h:form prependId="aa">
+			<h:form prependId="aa"><p:commandButton action='#{chartView.diccionario}' value="Diccionario" >
+					</p:commandButton>
 				<table width="100%">
 					<tr>
 						<td align="center"><p:commandButton value="Descargar CSV"

@@ -21,6 +21,7 @@ import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
 import prueba.prueba.business.FuncionarioBC;
+import prueba.prueba.util.Dato;
 
 @ManagedBean
 public class ChartView implements Serializable {
@@ -43,6 +44,10 @@ public class ChartView implements Serializable {
     Double julio;
     Double agosto;
     
+    
+    
+    private List<Dato> datos;
+    
     @Inject
     private FuncionarioBC funcionarioBC;
     
@@ -56,6 +61,23 @@ public class ChartView implements Serializable {
         julio = new Double(funcionarioBC.getTotalFuncionarios("julio")+"");
         agosto = new Double(funcionarioBC.getTotalFuncionarios("agosto")+"");
         createAnimatedModels();
+        
+        datos = new ArrayList<Dato>();
+        datos.add(new Dato("anho", ""));
+        datos.add(new Dato("antiguedad", ""));
+        datos.add(new Dato("cantidad", ""));
+        datos.add(new Dato("cargo", ""));
+        datos.add(new Dato("concepto", ""));
+        datos.add(new Dato("dependencia", ""));
+        datos.add(new Dato("estado", ""));
+        datos.add(new Dato("mes", ""));
+        datos.add(new Dato("montorubro", ""));
+        datos.add(new Dato("nombrecompleto", ""));
+        datos.add(new Dato("nombreobjetogasto", ""));
+        datos.add(new Dato("nrodocumento", ""));
+        datos.add(new Dato("objetogasto", ""));
+        datos.add(new Dato("rubro", ""));
+        datos.add(new Dato("salario", ""));
 
     }
  
@@ -420,6 +442,14 @@ public class ChartView implements Serializable {
 
 	public void setPieModel4Otros(PieChartModel pieModel4Otros) {
 		this.pieModel4Otros = pieModel4Otros;
+	}
+
+	public List<Dato> getDatos() {
+		return datos;
+	}
+
+	public void setDatos(List<Dato> datos) {
+		this.datos = datos;
 	}
     
 }
