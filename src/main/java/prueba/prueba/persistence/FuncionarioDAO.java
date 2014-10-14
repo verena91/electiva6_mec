@@ -165,6 +165,15 @@ public class FuncionarioDAO extends JPACrud<Funcionario, Long> {
 		
 	}
 	
+	public List<Object> getPorConceptoMesOtros(String mes){
+		Query q = em.createNativeQuery("select concepto, sum(salario) total "
+				+ " from funcionario where mes = :mes group by concepto  order by total asc limit 11");
+		q.setParameter("mes", mes);
+		return q.getResultList();
+		
+		
+	}
+	
 	public Object getTotal(String mes){
 		Query q = em.createNativeQuery("select sum(salario) from funcionario where mes = :mes");
 		q.setParameter("mes", mes);

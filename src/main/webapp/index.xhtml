@@ -193,6 +193,21 @@
 					</td>
 				</tr>
 			</table>
+			<br />
+			<p:fieldset legend="Ver información de otros conceptos" toggleable="true" toggleSpeed="500" collapsed="true">
+			<table>
+				<tr>
+					<td><p:chart type="pie" model="#{chartView.pieModel2Otros}"
+							style="width:30%; height:500px;" /></td>
+					<td><p:chart type="pie" model="#{chartView.pieModel3Otros}"
+							style="width:30%; height:500px;" /></td>
+					<td><p:chart type="pie" model="#{chartView.pieModel4Otros}"
+							style="width:30%; height:500px;" />
+					</td>
+				</tr>
+			</table>
+			</p:fieldset>
+			
 			<p:chart type="line" model="#{chartView.lineModel2}"
 				style="height:300px;" />
 			<p:outputLabel value="Se puede ver que se contrataron 313 funcionarios administrativos más en julio y 1730 más en agosto. Esta gran diferencia entre agosto y los dos primeros meses puede deberse a que en agosto aparecen 219 funcionarios con cargo de catedrático, mientras que en junio y julio existen 9 funcionarios con cargo. En todos los meses existen 24 funcionarios con cargo de docente." />

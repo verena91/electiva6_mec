@@ -33,6 +33,10 @@ public class ChartView implements Serializable {
     private PieChartModel pieModel3;
     private PieChartModel pieModel4;
     
+    private PieChartModel pieModel2Otros;
+    private PieChartModel pieModel3Otros;
+    private PieChartModel pieModel4Otros;
+    
     private LineChartModel lineModel2;
 
     Double junio;
@@ -83,6 +87,21 @@ public class ChartView implements Serializable {
         pieModel2.setDiameter(150);
         pieModel2.setLegendCols(1);
         
+        //Otros
+        pieModel2Otros = new PieChartModel();
+        for(Object ob: funcionarioBC.getPorConceptoMesOtros("junio")){
+        	Object[] objeto = (Object[])ob;
+        	pieModel2Otros.set(objeto[0]+"",(Number) objeto[1]);
+        	aux = aux + new Double(objeto[1]+"");
+        }
+        pieModel2Otros.setTitle("Otros conceptos de Junio");
+        pieModel2Otros.setLegendPosition("s");
+        pieModel2Otros.setFill(true);
+        pieModel2Otros.setShadow(true);
+        pieModel2Otros.setShowDataLabels(true);
+        pieModel2Otros.setDiameter(150);
+        pieModel2Otros.setLegendCols(1);
+        
         //Julio Torta
         pieModel3 = new PieChartModel();
         aux = new Double(0);
@@ -103,6 +122,21 @@ public class ChartView implements Serializable {
         pieModel3.setDiameter(150);
         pieModel3.setLegendCols(1);
         
+      //Otros
+        pieModel3Otros = new PieChartModel();
+        for(Object ob: funcionarioBC.getPorConceptoMesOtros("julio")){
+        	Object[] objeto = (Object[])ob;
+        	pieModel3Otros.set(objeto[0]+"",(Number) objeto[1]);
+        	aux = aux + new Double(objeto[1]+"");
+        }
+        pieModel3Otros.setTitle("Otros conceptos de Julio");
+        pieModel3Otros.setLegendPosition("s");
+        pieModel3Otros.setFill(true);
+        pieModel3Otros.setShadow(true);
+        pieModel3Otros.setShowDataLabels(true);
+        pieModel3Otros.setDiameter(150);
+        pieModel3Otros.setLegendCols(1);
+        
       //Agosto Torta
         pieModel4 = new PieChartModel();
         aux = new Double(0);
@@ -122,6 +156,21 @@ public class ChartView implements Serializable {
         pieModel4.setShowDataLabels(true);
         pieModel4.setDiameter(150);
         pieModel4.setLegendCols(1);
+        
+      //Otros
+        pieModel4Otros = new PieChartModel();
+        for(Object ob: funcionarioBC.getPorConceptoMesOtros("agosto")){
+        	Object[] objeto = (Object[])ob;
+        	pieModel4Otros.set(objeto[0]+"",(Number) objeto[1]);
+        	aux = aux + new Double(objeto[1]+"");
+        }
+        pieModel4Otros.setTitle("Otros conceptos de Agosto");
+        pieModel4Otros.setLegendPosition("s");
+        pieModel4Otros.setFill(true);
+        pieModel4Otros.setShadow(true);
+        pieModel4Otros.setShowDataLabels(true);
+        pieModel4Otros.setDiameter(150);
+        pieModel4Otros.setLegendCols(1);
         
         //
         lineModel2 = initCategoryModel();
@@ -347,6 +396,30 @@ public class ChartView implements Serializable {
 
 	public void setLineModel2(LineChartModel lineModel2) {
 		this.lineModel2 = lineModel2;
+	}
+
+	public PieChartModel getPieModel2Otros() {
+		return pieModel2Otros;
+	}
+
+	public void setPieModel2Otros(PieChartModel pieModel2Otros) {
+		this.pieModel2Otros = pieModel2Otros;
+	}
+
+	public PieChartModel getPieModel3Otros() {
+		return pieModel3Otros;
+	}
+
+	public void setPieModel3Otros(PieChartModel pieModel3Otros) {
+		this.pieModel3Otros = pieModel3Otros;
+	}
+
+	public PieChartModel getPieModel4Otros() {
+		return pieModel4Otros;
+	}
+
+	public void setPieModel4Otros(PieChartModel pieModel4Otros) {
+		this.pieModel4Otros = pieModel4Otros;
 	}
     
 }
